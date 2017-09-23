@@ -25,4 +25,37 @@
     <button ion-button color="primary" menuToggle>Toggle Menu</button>
   </p>
 
+  <!--A simple example of retrieving data from database-->
+  <ion-card *ngFor="let board of boards | async">
+
+    <ion-card-content>
+      <div>
+        {{board.CreateTime}}
+      </div>
+      <div>
+        {{board.InstrID}}
+      </div>
+      <div>
+        {{board.Title}}
+      </div>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-content>
+      <div>
+        {{(board_as_object | async)?.CreateTime}}
+      </div>
+      <div>
+        {{(board_as_object | async)?.InstrID}}
+      </div>
+      <div>
+        {{(board_as_object | async)?.Title}}
+      </div>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>
