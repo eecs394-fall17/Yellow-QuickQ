@@ -16,7 +16,7 @@ export class PeerToInstructorCardComponent implements OnInit{
 	title: any;
 	upvotes: boolean;
 
-	solved:boolean = false;
+	resolved:boolean = false;
 	collapsed:boolean;
 
 	ngOnInit(){
@@ -38,5 +38,10 @@ export class PeerToInstructorCardComponent implements OnInit{
 	toggleCollapse(){
 		console.log("toggleCollapse called");
 		this.collapsed=!this.collapsed;
+	}
+
+	makeResolved(){
+		console.log("makeResolved called");
+		this.resolved=true;
 	}
 }
