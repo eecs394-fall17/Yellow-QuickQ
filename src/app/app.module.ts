@@ -9,6 +9,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 // import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
+import { PeerToInstructorCardComponent } from './components/peerToInstructorCard/peerToInstructorCard';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
@@ -24,13 +25,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    TeamPage
+    TeamPage,
+    PeerToInstructorCardComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase, 'quick-q'),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +41,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    TeamPage
+    TeamPage,
+    PeerToInstructorCardComponent
   ],
   providers: [
     StatusBar,

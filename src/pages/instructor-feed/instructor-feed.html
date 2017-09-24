@@ -8,19 +8,7 @@
 
 <ion-content padding>
 
-  <h3>Welcome to your first right page Ionic app!</h3>
-
-  <p>
-    This starter project is our way of helping you get a functional app running in record time.
-  </p>
-  <p>
-    Follow along on the tutorial section of the Ionic docs!
-  </p>
-  <p style="font-size:22px; color: yellow; background-color: #a26a29; line-height: 50px; padding: 0 10px;">
-    Our Application will start right here!
-  </p>
-  <p>
-    <button ion-button color="primary" menuToggle>Toggle Menu</button>
-  </p>
+  <!--A simple example of retrieving data from database-->
+  <sd-peer-to-instructor-card *ngFor="let question of questions | async" [data]="question"></sd-peer-to-instructor-card>
 
 </ion-content>
