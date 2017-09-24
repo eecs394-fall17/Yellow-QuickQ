@@ -1,0 +1,30 @@
+<ion-card [ngClass]="solved?'solved':'unsolved'">
+	<div *ngIf="collapsed">
+		<ion-card-content>
+			<ion-card-header>{{title}}</ion-card-header>
+			<div>
+				{{description}}
+				<ion-icon name="arrow-back" md="ios-arrow-back" (click)="toggleCollapse()"></ion-icon>
+			</div>
+		</ion-card-content>
+	</div>
+	<div *ngIf="!collapsed">
+		<div id="first-panel">
+			<ion-item>
+				<h1>{{title}}</h1>
+
+				<div class="poster-time">
+					<p>{{poster}} <span>|</span> {{time | date:'shortTime'}}</p>
+				</div>
+				<ion-icon name="arrow-down" md="ios-arrow-down" (click)="toggleCollapse()"></ion-icon>
+			</ion-item>
+		</div>
+		<ion-card-content>
+			<div id="second-panel">
+				<p>{{description}}</p>
+				<p>Upvotes: {{upvotes}}</p>
+				<!-- Button -->
+			</div>
+		</ion-card-content>
+	</div>
+</ion-card>

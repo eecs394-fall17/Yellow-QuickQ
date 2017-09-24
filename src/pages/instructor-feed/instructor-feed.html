@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <img src="../../assets/icon/favicon.ico">
+    <ion-title>EECS 111 September 23rd</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <!--A simple example of retrieving data from database-->
+  <sd-peer-to-instructor-card *ngFor="let question of questions | async" [data]="question"></sd-peer-to-instructor-card>
+
+</ion-content>
