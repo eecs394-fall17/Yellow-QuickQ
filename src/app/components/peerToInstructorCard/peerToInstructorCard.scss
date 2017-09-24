@@ -1,31 +1,54 @@
 @import '../../app.scss';
 
 ion-card {
-	&.unsolved{
-		background-color:$unsolved_card_color
+	&.unresolved{
+		background-color:$unresolved_card_color
 	}
-	&.solved{
-		background-color:$solved_card_color
+	&.resolved{
+		background-color:$resolved_card_color
 	}
-	#first-panel{
-		ion-item.item{
-			background-color:transparent;
+	ion-item.item{
+		background-color:transparent;
+	}
+	ion-label.label{
+		border-bottom:1px solid #333;
+		padding-bottom:10px;
+		h2{
+			font-size:1.7rem;
+			font-weight:bold;
+			margin-bottom:5px;
+			margin-top:6px !important;
 		}
-		ion-label.label{
-			border-bottom:1px solid #333;
-			padding-bottom:10px;
-			h1{
-				font-size:2.7rem;
-				margin-bottom:5px;
-			}
+	}
+	button{
+		background-color: #48f442 !important;
+	}
+	.poster-time{
+		p{
+			color:#222;
 		}
-		.poster-time{
-			p{
-				color:#222;
-			}
-			span{
-				margin:0px 5px;
-			}
+		span{
+			margin:0px 5px;
+		}
+	}
+	#description{
+		color:black;
+		font-size:1.6rem;
+		margin-bottom:20px;
+	}
+	#resolvedMessage{
+		margin:auto;
+		text-align:center;
+		ion-icon{
+			font-size:24px !important;
+			margin-right:5px;
+		}
+		p{
+			display:inline-block;
+			font-size:19px;
+			margin-bottom:0px;
+			line-height:1;
+			color:black;
 		}
 	}
 }
