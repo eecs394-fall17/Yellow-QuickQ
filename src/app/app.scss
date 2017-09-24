@@ -14,3 +14,25 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+$screen_width_mobile: 650px;
+$screen_width_tablet: 768px;
+$screen_width_desktop: 1200px;
+
+@media screen and (min-width: $screen_width_mobile) {
+	.mobile{
+		display:none;
+	}
+}
+
+@media screen and (max-width: $screen_width_mobile) {
+	.not-mobile{
+		display: none;
+	}
+}
+
+$unsolved_card_color: #e88484; 
+// #F0574F #e88d8d
+$solved_card_color: #49AB1D;
+// #1FDC58 #b1ed9d
