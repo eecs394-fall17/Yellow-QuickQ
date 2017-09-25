@@ -1,6 +1,13 @@
 @import '../../app.scss';
 
+.scroll-content{
+  padding: 0 !important;
+}
+
 ion-card {
+  margin: 12px 8px !important;
+  width: calc(100% - 16px) !important;
+
 	&.unresolved{
 		background-color:$unresolved_card_color
 	}
@@ -11,15 +18,22 @@ ion-card {
 		background-color:transparent;
 	}
 	ion-label.label{
-		border-bottom:1px solid #333;
-		padding-bottom:10px;
+		// border-bottom:1px solid #333;
+		// padding-bottom:10px;
 		h2{
 			font-size:1.7rem;
 			font-weight:bold;
-			margin-bottom:5px;
+			margin-bottom:10px !important;
 			margin-top:6px !important;
 		}
 	}
+  .second-panel-container{
+    padding: 0;
+  }
+  .second-panel{
+    border-top: 1px solid #666;
+    padding: 13px 16px 0;
+  }
 	button{
 		background-color: #fffcff !important;
 	}
@@ -34,10 +48,15 @@ ion-card {
 	#description{
 		color:black;
 		font-size:1.6rem;
-		margin-bottom:20px;
+		margin-bottom:16px;
 	}
+  #upvotes{
+    color: black;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
 	#resolvedMessage{
-		margin:auto;
+		margin-bottom: 10px;
 		text-align:center;
 		ion-icon{
 			font-size:24px !important;
@@ -45,7 +64,7 @@ ion-card {
 		}
 		p{
 			display:inline-block;
-			font-size:19px;
+			font-size:20px;
 			margin-bottom:0px;
 			line-height:1;
 			color:black;
