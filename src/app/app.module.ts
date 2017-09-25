@@ -10,6 +10,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
 import { PeerToInstructorCardComponent } from './components/peerToInstructorCard/peerToInstructorCard';
+import { SortPopOverComponent } from './components/sortPopOver/sortPopOver';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
@@ -26,7 +27,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ItemDetailsPage,
     ListPage,
     TeamPage,
-    PeerToInstructorCardComponent
+    PeerToInstructorCardComponent,
+    SortPopOverComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ItemDetailsPage,
     ListPage,
     TeamPage,
-    PeerToInstructorCardComponent
+    PeerToInstructorCardComponent,
+    SortPopOverComponent
   ],
   providers: [
     StatusBar,

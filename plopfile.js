@@ -15,40 +15,22 @@ module.exports = (plop) => {
     actions: [
       {
         type: "add",
-        path: "src/app/components/{{name}}/index.ts",
-        templateFile: "plop-templates/component/index.ts",
-        abortOnFail: false
-      },
-      {
-        type: "add",
-        path: "src/app/components/{{name}}/{{name}}.component.scss",
+        path: "src/app/components/{{name}}/{{name}}.scss",
         templateFile: "plop-templates/component/plop.component.scss",
         abortOnFail: false
       },
       {
         type: "add",
-        path: "src/app/components/{{name}}/{{name}}.component.html",
+        path: "src/app/components/{{name}}/{{name}}.html",
         templateFile: "plop-templates/component/plop.component.html",
         abortOnFail: false
       },
       {
         type: "add",
-        path: "src/app/components/{{name}}/{{name}}.component.ts",
+        path: "src/app/components/{{name}}/{{name}}.ts",
         templateFile: "plop-templates/component/plop.component.ts",
         abortOnFail: false
       },
-      {
-        type: "add",
-        path: "src/app/components/{{name}}/{{name}}.module.ts",
-        templateFile: "plop-templates/component/plop.module.ts",
-        abortOnFail: false
-      },
-      {
-        type: "add",
-        path: "src/app/components/{{name}}/{{name}}-routing.module.ts",
-        templateFile: "plop-templates/component/plop-routing.ts",
-        abortOnFail: false
-      }
     ]
 
   });

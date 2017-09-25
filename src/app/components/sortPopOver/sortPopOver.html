@@ -1,0 +1,26 @@
+<!-- https://github.com/ionic-team/ionic-preview-app/blob/master/src/pages/popovers/basic/styles.scss -->
+<ion-list radio-group [(ngModel)]="sortMechanism" (ionChange)="onSelection()" class="popover-page">
+
+  <ion-item class="text-upvotes">
+    <ion-label>sortMechanism:{{sortMechanism}}</ion-label>
+    <ion-radio value="Upvotes"></ion-radio>
+  </ion-item>
+
+  <ion-item class="text-timefifo">
+    <ion-label>Time(Ascending)</ion-label> 
+    <!-- Ascending: arranged from smallest to largest time -->
+    <ion-radio value="TimeFIFO"></ion-radio>
+  </ion-item>
+
+  <ion-item class="text-timelifo">
+    <ion-label>Time(Descending)</ion-label>
+    <!-- Ascending: arranged from largest to smallest time -->
+    <ion-radio value="TimeLIFO"></ion-radio>
+  </ion-item>
+
+  <ion-item class="text-resolved">
+    <ion-label>Resolved</ion-label>
+    <ion-radio value="Resolved"></ion-radio>
+  </ion-item>
+
+</ion-list>
