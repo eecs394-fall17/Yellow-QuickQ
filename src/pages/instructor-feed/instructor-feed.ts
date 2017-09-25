@@ -8,12 +8,12 @@ import { PeerToInstructorCardComponent } from '../../app/components/peerToInstru
 })
 export class InstructorFeedPage {
   questions: FirebaseListObservable<any[]>;
-  question_as_object: FirebaseObjectObservable<any[]>;
+  board: FirebaseObjectObservable<any>;
 
   constructor(db: AngularFireDatabase) {                    // Inject database
-    this.questions = db.list('/Questions');                       // The URL you want to fetch data from
-    this.question_as_object = db.object('/Questions/qid-1234');   // When you have a specified id
+    this.questions = db.list('/Questions');                 // The URL you want to fetch data from
+    this.board = db.object('/Boards/bid-1234');
     console.log(this.questions);
-    console.log(this.question_as_object);
+    console.log(this.board);
   }
 }

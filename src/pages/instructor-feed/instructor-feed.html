@@ -3,7 +3,7 @@
     <ion-buttons left>
       <img width="32px" height="32px" src="../../assets/icon/app_icon/app_icon_blue_nobk_64_64.png"/>
     </ion-buttons>
-	  <ion-title>EECS 111 September 23rd</ion-title>
+	  <ion-title>{{ ( board | async)?.Title }}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only color="dark">
         <ion-icon name="md-funnel"></ion-icon>
