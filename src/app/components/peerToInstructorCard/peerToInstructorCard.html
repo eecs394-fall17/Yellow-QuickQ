@@ -1,36 +1,29 @@
 <ion-card [ngClass]="resolved?'resolved':'unresolved'">
-	<div *ngIf="collapsed">
-		<ion-item>
+	<div>
+		<ion-item (click)="toggleCollapse()">
 			<h2 margin-bottom>{{title}}</h2>
-			<ion-icon float-right name="arrow-back" md="ios-arrow-back" (click)="toggleCollapse()"></ion-icon>
+			<ion-icon *ngIf="collapsed" float-right name="arrow-back" md="ios-arrow-back"></ion-icon>
+      <ion-icon *ngIf="!collapsed" float-right name="arrow-down" md="ios-arrow-down"></ion-icon>
 			<div class="poster-time">
 				<p>{{poster}} <span>|</span> {{time | date:'shortTime'}}</p>
 			</div>
 		</ion-item>
-	</div>
-	<div *ngIf="!collapsed">
-		<div id="first-panel">
-			<ion-item>
-				<h2 margin-bottom>{{title}}</h2>
-				<ion-icon float-right name="arrow-down" md="ios-arrow-down" (click)="toggleCollapse()"></ion-icon>
-				<div class="poster-time">
-					<p>{{poster}} <span>|</span> {{time | date:'shortTime'}}</p>
-				</div>
-			</ion-item>
-		</div>
-		<ion-card-content>
-			<div id="second-panel">
-				<p id="description">{{description?description:'-'}}</p>
-				<p id="upvotes">Upvotes: {{upvotes}}</p>
-				<!-- Button -->
-				<div>
-					<button *ngIf="!resolved" ion-button full (click)="makeResolved()">Mark as Resolved</button>
-					<div id="resolvedMessage" *ngIf="resolved"> 
-						 <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
-						<p>You have resolved this question.</p>
-					</div>
-				</div>
-			</div>
-		</ion-card-content>
+
+    <div *ngIf="!collapsed">
+      <ion-card-content class="second-panel-container">
+        <div class="second-panel">
+          <p id="description">{{description?description:'-'}}</p>
+          <p id="upvotes">Upvotes: {{upvotes}}</p>
+        </div>
+        <!-- Button -->
+        <div>
+          <button *ngIf="!resolved" ion-button full (click)="makeResolved()">Mark as Resolved</button>
+          <ion-label id="resolvedMessage" *ngIf="resolved">
+            <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+            Question Resolved
+          </ion-label>
+        </div>
+      </ion-card-content>
+    </div>
 	</div>
 </ion-card>
