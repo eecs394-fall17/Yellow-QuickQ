@@ -1,10 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <img class="align-left" src="../../assets/icon/favicon.ico">
-	<ion-title class="align-center">EECS 111 September 23rd</ion-title>
-	<p>Sorted by: {{sortedBy}}.</p>
-	<ion-icon name="menu" float-right (click)="displaySortPopover()"></ion-icon>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons start>
+      <img width="32px" height="32px" src="../../assets/icon/app_icon/app_icon_blue_nobk_64_64.png"/>
+    </ion-buttons>
+	<ion-title>EECS 111 September 23rd</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="dark">
+        <ion-icon name="md-funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 
