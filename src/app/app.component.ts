@@ -2,10 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
-import { ListPage } from '../pages/list/list';
-import { TeamPage } from '../pages/team/team';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
