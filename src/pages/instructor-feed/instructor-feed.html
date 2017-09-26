@@ -5,7 +5,7 @@
     </ion-buttons>
 	  <ion-title>{{ ( board | async)?.Title }}</ion-title>
     <ion-buttons right>
-      <button ion-button icon-only color="dark">
+      <button ion-button icon-only color="dark" (click)="displaySortPopover($event)">
         <ion-icon name="md-funnel"></ion-icon>
       </button>
     </ion-buttons>

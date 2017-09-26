@@ -26,29 +26,4 @@
 		  </ion-card-content>
 		</div>
 	</div>
-	<div *ngIf="!collapsed">
-		<div id="first-panel">
-			<ion-item>
-				<h2 margin-bottom>{{title}}</h2>
-				<ion-icon float-right name="arrow-down" md="ios-arrow-down" (click)="toggleCollapse()"></ion-icon>
-				<div class="poster-time">
-					<p>{{poster}} <span>|</span> {{time | date:'short'}}</p>
-				</div>
-			</ion-item>
-		</div>
-		<ion-card-content>
-			<div id="second-panel">
-				<p id="description">{{description?description:'-'}}</p>
-				<p id="upvotes">Upvotes: {{upvotes}}</p>
-				<!-- Button -->
-				<div>
-					<button *ngIf="!resolved" ion-button full (click)="makeResolved()">Mark as Resolved</button>
-					<div id="resolvedMessage" *ngIf="resolved"> 
-						 <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
-						<p>You have resolved this question.</p>
-					</div>
-				</div>
-			</div>
-		</ion-card-content>
-	</div>
 </ion-card>
