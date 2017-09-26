@@ -20,7 +20,6 @@ export class PeerToInstructorCardComponent implements OnInit{
 	collapsed:boolean;
 
 	ngOnInit(){
-		console.log("data is: ", this.data);
 		this.extractData();
 	}
 
@@ -32,16 +31,15 @@ export class PeerToInstructorCardComponent implements OnInit{
 			this.time = this.data.Timestamp
 			this.title = this.data.Title
 			this.upvotes = this.data.Upvotes
+			this.resolved = this.data.isResolved;
 		}
 	}
 
 	toggleCollapse(){
-		console.log("toggleCollapse called");
 		this.collapsed=!this.collapsed;
 	}
 
 	makeResolved(){
-		console.log("makeResolved called");
 		this.resolved=true;
 	}
 }

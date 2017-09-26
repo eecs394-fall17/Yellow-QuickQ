@@ -47,13 +47,7 @@ module.exports = (plop) => {
     actions: [
       {
         type: "add",
-        path: "src/app/services/{{name}}/index.ts",
-        templateFile: "plop-templates/service/index.ts",
-        abortOnFail: false
-      },
-      {
-        type: "add",
-        path: "src/app/services/{{name}}/{{name}}.service.ts",
+        path: "src/app/services/{{name}}/{{name}}.ts",
         templateFile: "plop-templates/service/plop.service.ts",
         abortOnFail: false
       }

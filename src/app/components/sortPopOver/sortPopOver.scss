@@ -12,3 +12,15 @@ h2 {
   margin-bottom: 0;
   margin-top: 0.83em;
 }
+
+.item-radio-checked ion-label{
+	color: blue !important;
+}
+
+.radio-md .radio-checked {
+    border-color: blue !important;
+}
+
+.radio-md .radio-inner{
+	background-color:blue !important
+}

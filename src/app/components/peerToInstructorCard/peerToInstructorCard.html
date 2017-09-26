@@ -4,7 +4,7 @@
 			<h2 margin-bottom>{{title}}</h2>
 			<ion-icon float-right name="arrow-back" md="ios-arrow-back" (click)="toggleCollapse()"></ion-icon>
 			<div class="poster-time">
-				<p>{{poster}} <span>|</span> {{time | date:'shortTime'}}</p>
+				<p>{{poster}} <span>|</span> {{time | date:'short'}}</p>
 			</div>
 		</ion-item>
 	</div>
@@ -14,7 +14,7 @@
 				<h2 margin-bottom>{{title}}</h2>
 				<ion-icon float-right name="arrow-down" md="ios-arrow-down" (click)="toggleCollapse()"></ion-icon>
 				<div class="poster-time">
-					<p>{{poster}} <span>|</span> {{time | date:'shortTime'}}</p>
+					<p>{{poster}} <span>|</span> {{time | date:'short'}}</p>
 				</div>
 			</ion-item>
 		</div>
