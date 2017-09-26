@@ -16,6 +16,8 @@ import * as _ from 'lodash';
 export class InstructorFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   question_as_object: FirebaseObjectObservable<any[]>;
+  board: FirebaseObjectObservable<any>;
+
   questions_as_array: any;
   sorted_questions_as_array: any;
 
@@ -30,7 +32,8 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
     this.questions.subscribe(questions => {
       this.questions_as_array = questions;
       this.sorted_questions_as_array = this.getSortedCards();
-    })
+    });
+    this.board = db.object('/Boards/bid-1234');
   }
 
   ngOnInit():void{
@@ -99,6 +102,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
         console.log("sorted is: ", sorted);
         return sorted;
     }
+
   }
 }
 
