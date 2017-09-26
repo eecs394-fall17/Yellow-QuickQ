@@ -28,7 +28,11 @@ export class PeerToInstructorCardComponent implements OnInit{
 		if(this.data){
 			this.BID= this.data.BID
 			this.description = this.data.Description
-			this.poster = this.data.Poster
+      if(!this.data.isAnon) {
+        this.poster = this.data.Poster
+      } else {
+        this.poster = "Anonymous"
+      }
 			this.time = this.data.Timestamp
 			this.title = this.data.Title
 			this.upvotes = this.data.Upvotes
