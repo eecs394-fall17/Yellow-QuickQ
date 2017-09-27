@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'sd-generic-button-1',
   templateUrl: 'genericButton1.component.html',
-  styleUrls: ['genericButton1.component.css']
+  styleUrls: ['genericButton1.component.scss']
 })
 export class GenericButton1Component { }

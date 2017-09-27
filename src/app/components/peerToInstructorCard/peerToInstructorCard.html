@@ -2,14 +2,14 @@
 	<div>
 		<ion-item (click)="toggleCollapse()">
 			<h2 margin-bottom>{{title}}</h2>
-			<ion-icon *ngIf="collapsed" float-right name="arrow-back" md="ios-arrow-back"></ion-icon>
-			<ion-icon *ngIf="!collapsed" float-right name="arrow-down" md="ios-arrow-down"></ion-icon>
+			<ion-icon *ngIf="collapsed" float-right name="arrow-back" md="ios-arrow-back" class="collapse-icon"></ion-icon>
+			<ion-icon *ngIf="!collapsed" float-right name="arrow-down" md="ios-arrow-down" class="collapse-icon"></ion-icon>
 			<div class="poster-time">
 				<p>{{poster}} <span>|</span> {{time | date:'short'}}</p>
 			</div>
 		</ion-item>
 
-		<div *ngIf="!collapsed">
+		<div class="collapseDiv" *ngIf="!collapsed">
 		  <ion-card-content class="second-panel-container">
 		    <div class="second-panel">
 		      <p id="description">{{description?description:'-'}}</p>
