@@ -1,6 +1,5 @@
-import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
+import { Component} from '@angular/core';
+import { NavParams, ViewController } from 'ionic-angular';
 import { PopOverSortCommService } from '../../services/popOverSortComm/popOverSortComm';
 
 /**
