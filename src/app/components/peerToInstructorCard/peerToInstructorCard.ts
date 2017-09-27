@@ -16,13 +16,13 @@ export class PeerToInstructorCardComponent implements OnInit{
 	time: any;
 	title: any;
 	upvotes: boolean;
-	resolved:boolean;
-	collapsed:boolean;
-  database:AngularFireDatabase;
+	resolved:boolean = false;
+	collapsed:boolean = true;
+  	database:AngularFireDatabase;
 
-  constructor(db: AngularFireDatabase) {
-    this.database = db;
-  }
+	constructor(db: AngularFireDatabase) {
+		this.database = db;
+	}
 
 	ngOnInit(){
 		this.extractData();
