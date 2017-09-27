@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 /**
  * This class represents the lazy loaded PeerToInstructorCardComponent.
@@ -15,9 +16,13 @@ export class PeerToInstructorCardComponent implements OnInit{
 	time: any;
 	title: any;
 	upvotes: boolean;
-
-	resolved:boolean = false;
+	resolved:boolean;
 	collapsed:boolean;
+  database:AngularFireDatabase;
+
+  constructor(db: AngularFireDatabase) {
+    this.database = db;
+  }
 
 	ngOnInit(){
 		this.extractData();
@@ -45,5 +50,8 @@ export class PeerToInstructorCardComponent implements OnInit{
 
 	makeResolved(){
 		this.resolved=true;
+    var str = '/Questions/' + this.data.$key;
+    const question = this.database.object(str);
+    question.update({isResolved : true});
 	}
 }
