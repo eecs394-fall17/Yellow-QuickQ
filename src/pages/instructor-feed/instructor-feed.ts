@@ -1,12 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
+import { Component, OnInit, OnDestroy} from '@angular/core';
+import { NavController, PopoverController} from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { PeerToInstructorCardComponent } from '../../app/components/peerToInstructorCard/peerToInstructorCard';
 import { SortPopOverComponent } from '../../app/components/sortPopOver/sortPopOver';
 import { PopOverSortCommService } from '../../app/services/popOverSortComm/popOverSortComm';
 import { Subscription } from 'rxjs/Subscription';
-import { ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 @Component({
@@ -28,7 +25,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
   constructor(db: AngularFireDatabase, public popoverCtrl: PopoverController, private popOverSortCommService: PopOverSortCommService, private navCtrl:NavController) {                    // Inject database
-    this.questions = db.list('/Questions');                       // The URL you want to fetch data from    
+    this.questions = db.list('/Questions');                       // The URL you want to fetch data from
     this.questions.subscribe(questions => {
       this.questions_as_array = questions;
       this.sorted_questions_as_array = this.getSortedCards();

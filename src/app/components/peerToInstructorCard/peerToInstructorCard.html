@@ -1,29 +1,32 @@
 <ion-card [ngClass]="resolved?'resolved':'unresolved'">
-	<div>
-		<ion-item (click)="toggleCollapse()">
-			<h2 margin-bottom>{{title}}</h2>
-			<ion-icon *ngIf="collapsed" float-right name="arrow-back" md="ios-arrow-back" class="collapse-icon"></ion-icon>
-			<ion-icon *ngIf="!collapsed" float-right name="arrow-down" md="ios-arrow-down" class="collapse-icon"></ion-icon>
-			<div class="poster-time">
-				<p>{{poster}} <span>|</span> {{time | date:'short'}}</p>
-			</div>
-		</ion-item>
+  <div>
+    <ion-item (click)="toggleCollapse()">
+      <h2 margin-bottom>{{title}}</h2>
+      <ion-icon float-right name="arrow-down" md="ios-arrow-down" [ngClass]="{'collapse-icon': true, 'expand': !collapsed}"></ion-icon>
+      <div class="poster-time">
+        <p>{{poster}} <span>|</span> {{time | date:'short'}}</p>
+      </div>
+    </ion-item>
 
-		<div class="collapseDiv" *ngIf="!collapsed">
-		  <ion-card-content class="second-panel-container">
-		    <div class="second-panel">
-		      <p id="description">{{description?description:'-'}}</p>
-		      <p id="upvotes">Upvotes: {{upvotes}}</p>
-		    </div>
-		    <!-- Button -->
-		    <div>
-		      <button *ngIf="!resolved" ion-button full (click)="makeResolved()">Mark as Resolved</button>
-		      <ion-label id="resolvedMessage" *ngIf="resolved">
-		        <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
-		        <p>Question Resolved</p>
-		      </ion-label>
-		    </div>
-		  </ion-card-content>
-		</div>
-	</div>
+    <div [ngClass]="{'collapseDiv': true, 'expand': !collapsed}">
+      <ion-card-content class="second-panel-container">
+        <div [ngClass]="{'second-panel-shadow-unresolved': !resolved, 'second-panel-shadow-resolved': resolved}"></div>
+        <div class="second-panel">
+          <p id="description">{{description?description:'-'}}</p>
+          <p id="upvotes">Upvotes: {{upvotes}}</p>
+        </div>
+
+        <!-- Button -->
+        <div class="peer2ins-card-solve-btn">
+          <button *ngIf="!resolved" ion-button full (click)="makeResolved()" color="btn_mark_unresolved_blue">Mark as
+            Resolved
+          </button>
+          <ion-label id="resolvedMessage" *ngIf="resolved">
+            <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+            <p>Question Resolved</p>
+          </ion-label>
+        </div>
+      </ion-card-content>
+    </div>
+  </div>
 </ion-card>

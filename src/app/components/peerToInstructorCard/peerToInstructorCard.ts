@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * This class represents the lazy loaded PeerToInstructorCardComponent.
