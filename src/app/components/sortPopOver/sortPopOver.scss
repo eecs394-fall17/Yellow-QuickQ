@@ -1,26 +1,23 @@
-:host {
-  display: block;
-  min-height: calc(100vh - 164px);
-  position: relative;
-  flex: 1;
-}
+@import '../../app.scss';
 
-h2 {
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 0.005em;
-  margin-bottom: 0;
-  margin-top: 0.83em;
+.popover-content{
+  width:230px !important;
 }
 
 .item-radio-checked ion-label{
-	color: blue !important;
+	color: $logo_blue !important;
 }
 
 .radio-md .radio-checked {
-    border-color: blue !important;
+    border-color: $logo_blue !important;
 }
 
 .radio-md .radio-inner{
-	background-color:blue !important
+	background-color:$logo_blue !important
+}
+
+.radio-icon.radio-checked{
+  .radio-inner{
+    border-color: $logo_blue
+  }
 }

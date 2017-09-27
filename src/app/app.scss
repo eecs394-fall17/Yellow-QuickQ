@@ -20,6 +20,8 @@ $screen_width_mobile: 650px;
 $screen_width_tablet: 768px;
 $screen_width_desktop: 1200px;
 
+
+
 @media screen and (min-width: $screen_width_mobile) {
 	.mobile{
 		display:none;
@@ -32,7 +34,8 @@ $screen_width_desktop: 1200px;
 	}
 }
 
-$unresolved_card_color: #ed7b81;
+$logo_blue: #001689;
+// $unresolved_card_color: #ed7b81; 
 // #F0574F #e88d8d
-$resolved_card_color: #bbdb9b;
+$resolved_card_color: #f1f1f1;
 // #1FDC58 #b1ed9d

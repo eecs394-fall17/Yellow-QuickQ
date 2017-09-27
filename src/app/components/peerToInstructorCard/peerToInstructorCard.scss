@@ -9,14 +9,51 @@ ion-card {
   width: calc(100% - 16px) !important;
 
 	&.unresolved{
-		background-color:$unresolved_card_color
+		border:1px solid $logo_blue;
+		ion-item.item{
+			background-color:$logo_blue !important;
+		}
+		h2{
+			color:white;
+		}
+		.poster-time{
+			p{
+				color:white;
+			}
+		}
+		.collapse-icon{
+			color:white;
+		}
+		.collapseDiv{
+			background-color:white;
+			#description,#upvotes{
+				color:black ;
+			}
+		}
 	}
 	&.resolved{
-		background-color:$resolved_card_color
+		border:1px solid $resolved_card_color;
+		ion-item.item{
+			background-color:$resolved_card_color !important;
+		}
+		.poster-time{
+			p{
+				color:#333;
+			}
+		}
+		#description{
+			color:#333;
+		}
+		#upvotes{
+			color:#333;
+		}
+		.collapse-icon{
+			color:#333;
+		}
 	}
-	ion-item.item{
-		background-color:transparent;
-	}
+	// ion-item.item{
+	// 	background-color:transparent;
+	// }
 	ion-label.label{
 		// border-bottom:1px solid #333;
 		// padding-bottom:10px;
@@ -27,47 +64,62 @@ ion-card {
 			margin-top:6px !important;
 		}
 	}
-  .second-panel-container{
-    padding: 0;
-  }
-  .second-panel{
-    border-top: 1px solid #666;
-    padding: 13px 16px 0;
-  }
+	.second-panel-container{
+		padding: 0;
+	}
+	.second-panel{
+		border-top: 1px solid #666;
+		padding: 13px 16px 0;
+	}
 	button{
-		background-color: #fffcff !important;
+		background-color: #f4f4f4 !important;
 	}
 	.poster-time{
-		p{
-			color:#222;
-		}
 		span{
 			margin:0px 5px;
 		}
 	}
 	#description{
-		color:black;
+		// color:black;
 		font-size:1.6rem;
 		margin-bottom:16px;
 	}
-  #upvotes{
-    color: black;
-    font-size: 1.2rem;
-    margin: 10px 0;
-  }
+	#upvotes{
+		// color: white;
+		font-size: 1.2rem;
+		margin: 10px 0;
+	}
 	#resolvedMessage{
 		margin-bottom: 10px;
 		text-align:center;
 		ion-icon{
-			font-size:24px !important;
+			vertical-align: middle;
+			font-size:2.5rem;
 			margin-right:5px;
 		}
 		p{
+			vertical-align: middle;
 			display:inline-block;
-			font-size:20px;
+			font-size:2rem;
 			margin-bottom:0px;
 			line-height:1;
 			color:black;
+		}
+	}
+	#resolvedMessage.label.label-ios{
+		ion-icon{
+			font-size:4rem !important
+		}
+		p{
+			font-size:2rem !important
+		}
+	}
+	.ion-md-checkmark{
+		ion-icon{
+			font-size:2.5rem !important;
+		}
+		p{
+			font-size:2rem !important;
 		}
 	}
 }

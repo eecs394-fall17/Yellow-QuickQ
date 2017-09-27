@@ -17,7 +17,7 @@ export class PeerToInstructorCardComponent implements OnInit{
 	upvotes: boolean;
 
 	resolved:boolean = false;
-	collapsed:boolean;
+	collapsed:boolean = true;
 
 	ngOnInit(){
 		this.extractData();
