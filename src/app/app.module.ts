@@ -12,10 +12,6 @@ import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
 import { PeerToInstructorCardComponent } from './components/peerToInstructorCard/peerToInstructorCard';
 import { PeerToInstructorCardModule } from './components/peerToInstructorCard/peerToInstructorCard.module';
 import { SortPopOverComponent } from './components/sortPopOver/sortPopOver';
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
-import { TeamPage } from '../pages/team/team';
 
 import { PopOverSortCommService } from './services/popOverSortComm/popOverSortComm'
 
@@ -28,10 +24,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     InstructorFeedPage,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage,
-    TeamPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
@@ -47,10 +39,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     InstructorFeedPage,
-    HelloIonicPage,
-    ItemDetailsPage,
-    ListPage,
-    TeamPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
