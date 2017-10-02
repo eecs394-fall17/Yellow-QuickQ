@@ -18,4 +18,8 @@
   <!--A simple example of retrieving data from database-->
   <sd-peer-to-instructor-card *ngFor="let question of sorted_questions_as_array" [data]="question"></sd-peer-to-instructor-card>
 
+  <!-- Reset DB button: to be hidden from users. -->
+  <p (click)="resetDatabase()">Reset</p>
 </ion-content>
+
+
