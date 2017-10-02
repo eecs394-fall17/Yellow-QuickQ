@@ -1,7 +1,10 @@
 <ion-card [ngClass]="resolved?'resolved':'unresolved'">
   <div>
     <ion-item (click)="toggleCollapse()">
-      <h2 margin-bottom>{{title}}</h2>
+      <h2 margin-bottom>
+        {{title}}
+        <span float-right class="peer2ins-card-upvotes"><span>{{upvotes}}</span> {{upvotes > 1? "upvotes":"upvote"}}</span>
+      </h2>
       <ion-icon float-right name="arrow-down" md="ios-arrow-down" [ngClass]="{'collapse-icon': true, 'expand': !collapsed}"></ion-icon>
       <div class="poster-time">
         <p>{{poster}} <span>|</span> {{time | date:'short'}}</p>
@@ -13,7 +16,6 @@
         <div [ngClass]="{'second-panel-shadow-unresolved': !resolved, 'second-panel-shadow-resolved': resolved}"></div>
         <div class="second-panel">
           <p id="description">{{description?description:'-'}}</p>
-          <p id="upvotes">Upvotes: {{upvotes}}</p>
         </div>
 
         <!-- Button -->
