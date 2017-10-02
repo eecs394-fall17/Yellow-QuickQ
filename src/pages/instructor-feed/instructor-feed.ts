@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
-import { NavController, PopoverController} from 'ionic-angular';
+import { PopoverController} from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { SortPopOverComponent } from '../../app/components/sortPopOver/sortPopOver';
 import { PopOverSortCommService } from '../../app/services/popOverSortComm/popOverSortComm';
@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 })
 export class InstructorFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
-  question_as_object: FirebaseObjectObservable<any[]>;
+  // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
 
   questions_as_array: any;
@@ -24,7 +24,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(db: AngularFireDatabase, public popoverCtrl: PopoverController, private popOverSortCommService: PopOverSortCommService, private navCtrl:NavController) {                    // Inject database
+  constructor(db: AngularFireDatabase, public popoverCtrl: PopoverController, private popOverSortCommService: PopOverSortCommService) {                   // Inject database
     this.questions = db.list('/Questions');                       // The URL you want to fetch data from
     this.questions.subscribe(questions => {
       this.questions_as_array = questions;

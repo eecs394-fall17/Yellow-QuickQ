@@ -1,6 +1,6 @@
 {
   "name": "QuickQ",
-  "app_id": "",
+  "app_id": "a92f0ecd",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
