@@ -32,11 +32,11 @@ export class PeerToInstructorCardComponent implements OnInit{
 		if(this.data){
 			this.BID= this.data.BID
 			this.description = this.data.Description
-      if(!this.data.isAnon) {
-        this.poster = this.data.Poster
-      } else {
-        this.poster = "Anonymous"
-      }
+			if(!this.data.isAnon) {
+				this.poster = this.data.Poster
+			} else {
+				this.poster = "Anonymous"
+			}
 			this.time = this.data.Timestamp
 			this.title = this.data.Title
 			this.upvotes = this.data.Upvotes
@@ -50,8 +50,19 @@ export class PeerToInstructorCardComponent implements OnInit{
 
 	makeResolved(){
 		this.resolved=true;
-    var str = '/Questions/' + this.data.$key;
-    const question = this.database.object(str);
-    question.update({isResolved : true});
+		this.toggleCollapse();
+		setTimeout(
+			function(){ 
+				var str = '/Questions/' + this.data.$key;
+				const question = this.database.object(str);
+				question.update({isResolved : true});
+		}.bind(this), 400);
+	}
+
+	makeUnresolved(){
+		this.resolved=false;
+		var str = '/Questions/' + this.data.$key;
+		const question = this.database.object(str);
+		question.update({isResolved : false});
 	}
 }

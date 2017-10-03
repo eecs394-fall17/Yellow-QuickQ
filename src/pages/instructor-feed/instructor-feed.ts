@@ -24,7 +24,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(db: AngularFireDatabase, public popoverCtrl: PopoverController, private popOverSortCommService: PopOverSortCommService) {                   // Inject database
+  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController, private popOverSortCommService: PopOverSortCommService) {                   // Inject database
     this.questions = db.list('/Questions');                       // The URL you want to fetch data from
     this.questions.subscribe(questions => {
       this.questions_as_array = questions;
@@ -99,8 +99,16 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
         console.log("sorted is: ", sorted);
         return sorted;
     }
-
   }
+
+  resetDatabase(){
+    _.map(this.questions_as_array, q=>{
+      var str = '/Questions/' + q.$key;
+      const _question = this.db.object(str);
+      _question.update({isResolved : false});
+    })
+  }
+  
 }
 
 

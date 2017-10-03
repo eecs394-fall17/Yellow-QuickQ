@@ -5,33 +5,41 @@
 }
 
 ion-card {
-  margin: 12px 8px !important;
-  width: calc(100% - 16px) !important;
-
-  .collapse-icon{
-    -webkit-transform: rotateZ(90deg);
-    -moz-transform: rotateZ(90deg);
-    -ms-transform: rotateZ(90deg);
-    -o-transform: rotateZ(90deg);
-    transform: rotateZ(90deg);
-    -webkit-transition: all 0.1s linear;
-    -moz-transition: all 0.1s linear;
-    -ms-transition: all 0.1s linear;
-    -o-transition: all 0.1s linear;
-    transition: all 0.1s linear;
-    &.expand{
-      -webkit-transform: rotateZ(0);
-      -moz-transform: rotateZ(0);
-      -ms-transform: rotateZ(0);
-      -o-transform: rotateZ(0);
-      transform: rotateZ(0);
-    }
-  }
+	margin: 12px 8px !important;
+	width: calc(100% - 16px) !important;
+	transition: height 1s, border-top .4s, padding 1s !important;
+	.collapse-icon{
+		-webkit-transform: rotateZ(90deg);
+		-moz-transform: rotateZ(90deg);
+		-ms-transform: rotateZ(90deg);
+		-o-transform: rotateZ(90deg);
+		transform: rotateZ(90deg);
+		-webkit-transition: all 0.1s linear;
+		-moz-transition: all 0.1s linear;
+		-ms-transition: all 0.1s linear;
+		-o-transition: all 0.1s linear;
+		transition: all 0.1s linear;
+		&.expand{
+		  -webkit-transform: rotateZ(0);
+		  -moz-transform: rotateZ(0);
+		  -ms-transform: rotateZ(0);
+		  -o-transform: rotateZ(0);
+		  transform: rotateZ(0);
+		}
+	}
 
 	&.unresolved{
 		border:1px solid $logo_blue;
+		-webkit-transition: border-color 0.1s;
+		-moz-transition: border-color 0.1s;
+		-o-transition: border-color 0.1s;
+		transition: border-color 0.1s;
 		ion-item.item{
 			background-color:$logo_blue !important;
+			-webkit-transition: background-color 0.4s;
+	  		-moz-transition: background-color 0.4s;
+	  		-o-transition: background-color 0.4s;
+	  		transition: background-color 0.4s;
 		}
 		h2{
 			color:white;
@@ -44,11 +52,22 @@ ion-card {
 		.collapse-icon{
 			color:white;
 		}
+		.peer2ins-card-upvotes{
+			color:white;
+		}
 	}
 	&.resolved{
 		border:1px solid $resolved_card_color;
+		-webkit-transition: border-color 0.1s;
+  		-moz-transition: border-color 0.1s;
+  		-o-transition: border-color 0.1s;
+  		transition: border-color 0.1s;
 		ion-item.item{
 			background-color:$resolved_card_color !important;
+			-webkit-transition: background-color 0.4s;
+	  		-moz-transition: background-color 0.4s;
+	  		-o-transition: background-color 0.4s;
+	  		transition: background-color 0.4s;
 		}
 		.poster-time{
 			p{
@@ -62,6 +81,9 @@ ion-card {
 			color:#333;
 		}
 		.collapse-icon{
+			color:#333;
+		}
+		.peer2ins-card-upvotes{
 			color:#333;
 		}
 	}
@@ -165,6 +187,9 @@ ion-card {
     //padding: 0 12px;
     button{
       margin: 16px 0 0 0;
+      &.button{
+      	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(25, 25, 25, 0.4) !important;
+      }
     }
   }
   .peer2ins-card-upvotes{
