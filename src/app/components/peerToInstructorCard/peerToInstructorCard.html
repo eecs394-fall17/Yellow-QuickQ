@@ -19,7 +19,7 @@
         </div>
 
         <!-- Button -->
-        <div class="peer2ins-card-solve-btn">
+        <div class="peer2ins-card-solve-btn" *ngIf="instructorSide">
           <button *ngIf="!resolved" ion-button full (click)="makeResolved()" color="light">Mark as
             Resolved
           </button>
@@ -28,6 +28,23 @@
             <p>Question Resolved</p>
           </ion-label>
         </div>
+
+        <div class="peer2ins-card-solve-btn" *ngIf="!instructorSide">
+          <button *ngIf="!upvoted" ion-button full (click)="toggleUpvote()" color="light">
+              <span style="margin-right:10px;">Upvote</span>
+              <ion-icon ios="ios-thumbs-up" md="md-thumbs-up" style="font-size:x-large"></ion-icon>
+          </button>
+          <button *ngIf="upvoted" ion-button full (click)="toggleUpvote()" color="light">
+              <span style="margin-right:10px;">Remove upvote</span>
+              <ion-icon ios="ios-thumbs-down" md="md-thumbs-down" style="font-size:x-large"></ion-icon>
+          </button>
+          <!-- <ion-label id="upvotedMessage" *ngIf="upvoted">
+            <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+            <p>Question upvoted</p>
+          </ion-label> -->
+        </div>
+
+
       </ion-card-content>
     </div>
   </div>

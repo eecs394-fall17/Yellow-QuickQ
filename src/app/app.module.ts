@@ -9,6 +9,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 // import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
+import { StudentFeedPage } from '../pages/student-feed/student-feed';
+
 import { PeerToInstructorCardComponent } from './components/peerToInstructorCard/peerToInstructorCard';
 import { PeerToInstructorCardModule } from './components/peerToInstructorCard/peerToInstructorCard.module';
 import { SortPopOverComponent } from './components/sortPopOver/sortPopOver';
@@ -24,6 +26,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     InstructorFeedPage,
+    StudentFeedPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
@@ -39,6 +42,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     InstructorFeedPage,
+    StudentFeedPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
