@@ -7,10 +7,10 @@ import { Subscription } from 'rxjs/Subscription';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'page-instructor-feed',
-  templateUrl: 'instructor-feed.html'
+  selector: 'page-student-feed',
+  templateUrl: 'student-feed.html'
 })
-export class InstructorFeedPage implements OnInit, OnDestroy {
+export class StudentFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
@@ -26,13 +26,9 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
 
   constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController, private popOverSortCommService: PopOverSortCommService) {                   // Inject database
     this.questions = db.list('/Questions');                       // The URL you want to fetch data from
-    console.log('this.questions 1 is: ', this.questions)
     this.questions.subscribe(questions => {
       this.questions_as_array = questions;
-      console.log("questions is: ", questions);
-      console.log("this.questions_as_array is: ", this.questions_as_array);
       this.sorted_questions_as_array = this.getSortedCards();
-      console.log("this.questions_as_array is: ", this.sorted_questions_as_array);
     });
     this.board = db.object('/Boards/bid-1234');
   }
@@ -103,6 +99,9 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
         console.log("sorted is: ", sorted);
         return sorted;
     }
+  }
+  createNewQuestion(event){
+    console.log("createNewQuestions");
   }
 
   resetDatabase(){

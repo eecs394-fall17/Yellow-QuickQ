@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
+import { StudentFeedPage } from '../pages/student-feed/student-feed';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +29,8 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Instructor Feed Pages', component: InstructorFeedPage },
+      { title: 'Instructor Feed Page', component: InstructorFeedPage },
+      { title: 'Student Feed Page', component: StudentFeedPage },
       // { title: 'Hello Ionic', component: HelloIonicPage },
       // { title: 'My First List', component: ListPage },
       // { title: 'Meet our team!', component: TeamPage },
@@ -42,6 +44,10 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  changePage(event){
+    console.log("changePage has been called in the component. Event is: ", event)
   }
 
   openPage(page) {

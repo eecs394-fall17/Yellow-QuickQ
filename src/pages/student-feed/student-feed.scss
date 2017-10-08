@@ -1,0 +1,21 @@
+ion-header{
+	.compose-icon{
+		vertical-align: text-top;
+		vertical-align: -webkit-baseline-middle;
+		font-size:2rem;
+		border-right:1px solid #232323;
+		opacity:.4;
+		margin:0px 4px;
+	}
+	ion-navbar{
+		img{
+			text-align: left;
+			padding:0;
+			margin:0;
+			position:absolute;
+		}
+		ion-title{
+			text-align:center;
+		}
+	}
+}
