@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
-import { PopoverController} from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { SortPopOverComponent } from '../../app/components/sortPopOver/sortPopOver';
-import { PopOverSortCommService } from '../../app/services/popOverSortComm/popOverSortComm';
-import { Subscription } from 'rxjs/Subscription';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Modal, ModalController, PopoverController} from 'ionic-angular';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
+import {SortPopOverComponent} from '../../app/components/sortPopOver/sortPopOver';
+import {PopOverSortCommService} from '../../app/services/popOverSortComm/popOverSortComm';
+import {Subscription} from 'rxjs/Subscription';
 import * as _ from 'lodash';
+import {P2iNewQuestionPage} from "../p2i-new-question/p2i-new-question";
 
 @Component({
   selector: 'page-student-feed',
@@ -20,11 +21,12 @@ export class StudentFeedPage implements OnInit, OnDestroy {
 
   sortPopover: any;
 
-  sortedBy:string = "TimeFIFO";
+  sortedBy: string = "TimeFIFO";
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController, private popOverSortCommService: PopOverSortCommService) {                   // Inject database
+  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController,
+              private popOverSortCommService: PopOverSortCommService, public modalCtrl: ModalController) {                   // Inject database
     this.questions = db.list('/Questions');                       // The URL you want to fetch data from
     this.questions.subscribe(questions => {
       this.questions_as_array = questions;
@@ -33,17 +35,17 @@ export class StudentFeedPage implements OnInit, OnDestroy {
     this.board = db.object('/Boards/bid-1234');
   }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.subscription = this.popOverSortCommService.sortMech$.subscribe(
       item => {
-        if(item){
-          this.sortedBy=item;
+        if (item) {
+          this.sortedBy = item;
           this.sorted_questions_as_array = this.getSortedCards();
         }
       });
   }
 
-  ngOnDestroy():void{
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
@@ -51,13 +53,13 @@ export class StudentFeedPage implements OnInit, OnDestroy {
     this.sortPopover = this.popoverCtrl.create(SortPopOverComponent, {
       sortMechanism: this.sortedBy,
     });
-    this.sortPopover.onDidDismiss((data:{pop:boolean}) => {
+    this.sortPopover.onDidDismiss((data: { pop: boolean }) => {
       console.log("ON DID DISMISS, ", data)
-      this.sortPopover=null;
+      this.sortPopover = null;
     });
-    this.sortPopover.onWillDismiss((data:any) => {
+    this.sortPopover.onWillDismiss((data: any) => {
       console.log("ON WILL DISMISS, ", data)
-      this.sortPopover=null;
+      this.sortPopover = null;
     })
     this.sortPopover.present({ev: myEvent, sortMechanism: this.sortedBy})
     // .then(() => {
@@ -74,14 +76,14 @@ export class StudentFeedPage implements OnInit, OnDestroy {
     // });
   }
 
-  getSortedCards(){
+  getSortedCards() {
     let sortMech = this.sortedBy;
     return this.sortCards(this.questions_as_array, sortMech);
   }
 
-  sortCards(cards, sortMech){
+  sortCards(cards, sortMech) {
     let sorted = null;
-    switch(sortMech){
+    switch (sortMech) {
       case('Upvotes'):
         sorted = _.sortBy(cards, "Upvotes").reverse();
         return sorted;
@@ -92,7 +94,7 @@ export class StudentFeedPage implements OnInit, OnDestroy {
         sorted = _.sortBy(cards, "Timestamp").reverse();
         return sorted;
       case('Resolved'):
-        let [resolved, unresolved] = _.partition(cards, function(q){
+        let [resolved, unresolved] = _.partition(cards, function (q) {
           return q.isResolved
         });
         sorted = _.concat(this.sortCards(unresolved, 'TimeFIFO'), this.sortCards(resolved, 'TimeFIFO'));
@@ -100,18 +102,20 @@ export class StudentFeedPage implements OnInit, OnDestroy {
         return sorted;
     }
   }
-  createNewQuestion(event){
-    console.log("createNewQuestions");
+
+  createNewQuestion(event) {
+    const newQuestionModal:Modal = this.modalCtrl.create(P2iNewQuestionPage);
+    newQuestionModal.present();
   }
 
-  resetDatabase(){
-    _.map(this.questions_as_array, q=>{
+  resetDatabase() {
+    _.map(this.questions_as_array, q => {
       var str = '/Questions/' + q.$key;
       const _question = this.db.object(str);
-      _question.update({isResolved : false});
+      _question.update({isResolved: false});
     })
   }
-  
+
 }
 
 

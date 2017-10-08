@@ -21,6 +21,7 @@ import { SharedModule } from './services/shared.module'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.module";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AngularFireDatabaseModule,
     SharedModule.forRoot(),
     PeerToInstructorCardModule,
+    P2iNewQuestionModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,14 +1,30 @@
-:host {
-  display: block;
-  min-height: calc(100vh - 164px);
-  position: relative;
-  flex: 1;
+.full-bottom-btn{
+  position: absolute;
+  float: left;
+  bottom: 0;
+  margin: 0;
 }
 
-h2 {
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 0.005em;
-  margin-bottom: 0;
-  margin-top: 0.83em;
+.new-question-content{
+  .scroll-content{
+    bottom: 3.2em;
+    ion-input{
+      padding: 10px 16px;
+      font-size: 1.5em;
+    }
+    ion-textarea{
+      height: calc(100% - 10em);
+      padding: 0 16px 0 16px;
+      font-size: 1em;
+    }
+    ion-item{
+      .item-inner{
+        border-bottom: 0;
+      }
+      ion-checkbox{
+        padding: 10px 16px;
+        margin-right: 0 !important;
+      }
+    }
+  }
 }
