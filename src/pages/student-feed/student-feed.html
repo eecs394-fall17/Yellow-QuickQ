@@ -5,6 +5,10 @@
     </ion-buttons>
 	  <ion-title>{{ ( board | async)?.Title }}</ion-title>
     <ion-buttons right>
+      <button ion-button icon-only color="dark" (click)="createNewQuestion($event)">
+        <ion-icon ios="ios-create" md="md-create"></ion-icon>
+      </button>
+      <span class="compose-icon"></span>
       <button ion-button icon-only color="dark" (click)="displaySortPopover($event)">
         <ion-icon name="md-funnel"></ion-icon>
       </button>
@@ -16,7 +20,7 @@
 <ion-content padding>
 
   <!--A simple example of retrieving data from database-->
-  <sd-peer-to-instructor-card *ngFor="let question of sorted_questions_as_array" [data]="question" [instructorSide]="true"></sd-peer-to-instructor-card>
+  <sd-peer-to-instructor-card *ngFor="let question of sorted_questions_as_array" [data]="question"></sd-peer-to-instructor-card>
 
   <!-- Reset DB button: to be hidden from users. -->
   <p (click)="resetDatabase()">Reset</p>
