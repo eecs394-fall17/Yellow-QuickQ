@@ -12,9 +12,9 @@ import {AngularFireDatabase} from "angularfire2/database";
   templateUrl: 'p2i-new-question.html',
 })
 export class P2iNewQuestionPage {
-  questionTitle: string;
-  questionDescription: string;
-  isAnonymous: boolean;
+  questionTitle: string = "";
+  questionDescription: string = "";
+  isAnonymous: boolean = false;
 
   constructor(private view: ViewController, private db:AngularFireDatabase) {
 
@@ -34,7 +34,7 @@ export class P2iNewQuestionPage {
         "Timestamp": Date.now(),
         "Title": this.questionTitle,
         "Upvotes": 0,
-        "isAnonymous": this.isAnonymous,
+        "isAnon": this.isAnonymous,
         "isResolved": false
       }
     );
