@@ -54,4 +54,35 @@ module.exports = (plop) => {
     ]
   });
 
+  plop.setGenerator("page", {
+    description: "Create a new Page",
+    prompts: [
+      {
+        type: "input",
+        name: "name",
+        message: "What is the page's name?"
+      }
+    ],
+    actions: [
+      {
+        type: "add",
+        path: "src/pages/{{name}}/{{name}}.scss",
+        templateFile: "plop-templates/component/plop.component.scss",
+        abortOnFail: false
+      },
+      {
+        type: "add",
+        path: "src/pages/{{name}}/{{name}}.html",
+        templateFile: "plop-templates/component/plop.component.html",
+        abortOnFail: false
+      },
+      {
+        type: "add",
+        path: "src/pages/{{name}}/{{name}}.ts",
+        templateFile: "plop-templates/component/plop.component.ts",
+        abortOnFail: false
+      }
+    ]
+  });
+
 };

@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="closeModal()" color="dark">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>New Question</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="new-question-content">
+  <ion-input placeholder="Title" [(ngModel)]="questionTitle"></ion-input>
+  <ion-textarea placeholder="Describe your question" [(ngModel)]="questionDescription"></ion-textarea>
+  <ion-item>
+    <ion-label>Anonymous</ion-label>
+    <ion-checkbox [(ngModel)]="isAnonymous"></ion-checkbox>
+  </ion-item>
+</ion-content>
+
+<button ion-button full class="full-bottom-btn" (click)="postQuestion()">Post Question</button>

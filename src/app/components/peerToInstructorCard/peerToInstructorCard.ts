@@ -57,8 +57,9 @@ export class PeerToInstructorCardComponent implements OnInit{
 	makeResolved(){
 		this.resolved=true;
 		this.toggleCollapse();
+    // TODO just 'timeout' cannot make sure that the data is updated
 		setTimeout(
-			function(){ 
+			function(){
 				var str = '/Questions/' + this.data.$key;
 				const question = this.database.object(str);
 				question.update({isResolved : true});
