@@ -1,3 +1,5 @@
+@import "../../app/app";
+
 .full-bottom-btn{
   position: absolute;
   float: left;
@@ -6,18 +8,39 @@
 }
 
 .new-question-content{
+  height: calc(100% - 2.8em);
+  font-size: 2rem;
+  .toolbar-background-ios, .toolbar-background-md{
+    background-color: white;
+  }
+  ion-toolbar{
+    padding: 4px 10px;
+  }
   .scroll-content{
-    bottom: 3.2em;
     ion-input{
-      padding: 10px 16px;
-      font-size: 1.5em;
+      padding: 10px 22px;
+      font-size: 3rem;
+      font-weight: bold;
+      color: $logo_blue;
     }
     ion-textarea{
-      height: calc(100% - 10em);
-      padding: 0 16px 0 16px;
-      font-size: 1em;
+      padding: 0 22px;
+      textarea{
+        height: 100%;
+        font-size: 1.8rem;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      &.input-md{
+        height: calc(100% - 56px - 13.5rem) !important;
+      }
+      &.input-ios{
+        height: calc(100% - 44px - 13.5rem) !important;
+      }
     }
     ion-item{
+      position: absolute;
+      bottom: 0;
       .item-inner{
         border-bottom: 0;
       }
