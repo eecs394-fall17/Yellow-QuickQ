@@ -1,7 +1,6 @@
-<ion-header>
-
+<ion-content class="new-question-content">
   <ion-toolbar>
-    <ion-buttons start>
+    <ion-buttons left>
       <button ion-button icon-only (click)="closeModal()" color="dark">
         <ion-icon name="close"></ion-icon>
       </button>
@@ -9,9 +8,6 @@
     <ion-title>New Question</ion-title>
   </ion-toolbar>
 
-</ion-header>
-
-<ion-content class="new-question-content">
   <ion-input placeholder="Title" [(ngModel)]="questionTitle"></ion-input>
   <ion-textarea placeholder="Describe your question" [(ngModel)]="questionDescription"></ion-textarea>
   <ion-item>
@@ -20,4 +16,4 @@
   </ion-item>
 </ion-content>
 
-<button ion-button full class="full-bottom-btn" (click)="postQuestion()">Post Question</button>
+<button ion-button full large class="full-bottom-btn" (click)="postQuestion()">Post Question</button>
