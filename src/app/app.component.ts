@@ -4,6 +4,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
 import { StudentFeedPage } from '../pages/student-feed/student-feed';
+import { SignInPage } from '../pages/sign-in/sign-in';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,8 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // make InstructorFeedPage the root (or first) page
-  rootPage = InstructorFeedPage;
+  // make SignInPage the root (or first) page
+  rootPage = SignInPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -31,9 +32,7 @@ export class MyApp {
     this.pages = [
       { title: 'Instructor Feed Page', component: InstructorFeedPage },
       { title: 'Student Feed Page', component: StudentFeedPage },
-      // { title: 'Hello Ionic', component: HelloIonicPage },
-      // { title: 'My First List', component: ListPage },
-      // { title: 'Meet our team!', component: TeamPage },
+      { title: 'Sign In Page', component: SignInPage }
     ];
   }
 
