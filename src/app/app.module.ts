@@ -5,11 +5,11 @@ import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-// Maybe not using it now
-// import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
 import { StudentFeedPage } from '../pages/student-feed/student-feed';
+import { SignInPage } from '../pages/sign-in/sign-in';
 
 import { PeerToInstructorCardComponent } from './components/peerToInstructorCard/peerToInstructorCard';
 import { PeerToInstructorCardModule } from './components/peerToInstructorCard/peerToInstructorCard.module';
@@ -28,6 +28,7 @@ import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.m
     MyApp,
     InstructorFeedPage,
     StudentFeedPage,
+    SignInPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
@@ -36,6 +37,7 @@ import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.m
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase, 'quick-q'),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     SharedModule.forRoot(),
     PeerToInstructorCardModule,
     P2iNewQuestionModule
@@ -45,6 +47,7 @@ import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.m
     MyApp,
     InstructorFeedPage,
     StudentFeedPage,
+    SignInPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
@@ -52,7 +55,7 @@ import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.m
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PopOverSortCommService
+    PopOverSortCommService,
   ]
 })
 export class AppModule {}
