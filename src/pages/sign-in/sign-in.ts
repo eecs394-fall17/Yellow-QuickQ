@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {DashboardPage} from "../dashboard/dashboard";
+import {SideMenuComponent} from "../../app/components/sideMenu/sideMenu";
 /**
  * Generated class for the SignInPage page.
  *
@@ -38,7 +40,7 @@ export class SignInPage {
         });
 
         //set page
-        //this.navCtrl.setRoot(StudentFeedPage);
+        this.navCtrl.setRoot(SideMenuComponent);
       } else {
         // user is signed out
         //this.navCtrl.setRoot(SignInPage);
@@ -68,24 +70,10 @@ export class SignInPage {
     });
   }
 
-  logout() {
-    this.afAuth.auth.signOut();
-    this.presentLogoutSuccessAlert();
-  }
-
   presentLoginFailureAlert() {
     const alert = this.alertCtrl.create({
       title: 'Failed to login',
       subTitle: 'Email or password is incorrect. Please try again.',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  presentLogoutSuccessAlert() {
-    const alert = this.alertCtrl.create({
-      title: 'Logged Out',
-      subTitle: 'You have successfully been logged out.',
       buttons: ['OK']
     });
     alert.present();

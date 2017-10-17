@@ -58,7 +58,7 @@ import {SideMenuCompModule} from "./components/sideMenu/sideMenu.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PopOverSortCommService,
+    PopOverSortCommService
   ]
 })
 export class AppModule {}

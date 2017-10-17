@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Platform, MenuController, Nav } from 'ionic-angular';
+import { Platform, Nav } from 'ionic-angular';
 
-import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
-import { StudentFeedPage } from '../pages/student-feed/student-feed';
 import { SignInPage } from '../pages/sign-in/sign-in';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,22 +16,13 @@ export class MyApp {
 
   // make SignInPage the root (or first) page
   rootPage = SignInPage;
-  pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
-    public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen
   ) {
     this.initializeApp();
-
-    // set our app's pages
-    this.pages = [
-      { title: 'Instructor Feed Page', component: InstructorFeedPage },
-      { title: 'Student Feed Page', component: StudentFeedPage },
-      { title: 'Sign In Page', component: SignInPage }
-    ];
   }
 
   initializeApp() {
@@ -47,12 +36,5 @@ export class MyApp {
 
   changePage(event){
     console.log("changePage has been called in the component. Event is: ", event)
-  }
-
-  openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.menu.close();
-    // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
   }
 }

@@ -1,1 +1,11 @@
-<div>Template Component</div>
+<ion-menu [content]="content">
+  <ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+    <button ion-button full (click)="logout()">Sign out</button>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="mainRootPage" #content swipeBackEnabled="false"></ion-nav>
