@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
   selector: 'sd-{{kabobCase name}}',
   templateUrl: '{{camelCase name}}.html',
 })
-export class {{properCase name}}Component { }
+export class {{properCase name}}Component {
+
+  constructor() {
+
+  }
+}

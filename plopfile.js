@@ -15,22 +15,28 @@ module.exports = (plop) => {
     actions: [
       {
         type: "add",
-        path: "src/app/components/{{name}}/{{name}}.scss",
-        templateFile: "plop-templates/component/plop.component.scss",
+        path: "src/app/components/{{camelCase name}}/{{camelCase name}}.scss",
+        templateFile: "plop-templates/component/plop.scss",
         abortOnFail: false
       },
       {
         type: "add",
-        path: "src/app/components/{{name}}/{{name}}.html",
-        templateFile: "plop-templates/component/plop.component.html",
+        path: "src/app/components/{{camelCase name}}/{{camelCase name}}.html",
+        templateFile: "plop-templates/component/plop.html",
         abortOnFail: false
       },
       {
         type: "add",
-        path: "src/app/components/{{name}}/{{name}}.ts",
-        templateFile: "plop-templates/component/plop.component.ts",
+        path: "src/app/components/{{camelCase name}}/{{camelCase name}}.ts",
+        templateFile: "plop-templates/component/plop.ts",
         abortOnFail: false
       },
+      {
+        type: "add",
+        path: "src/app/components/{{camelCase name}}/{{camelCase name}}.module.ts",
+        templateFile: "plop-templates/component/plop.module.ts",
+        abortOnFail: false
+      }
     ]
 
   });
@@ -66,20 +72,26 @@ module.exports = (plop) => {
     actions: [
       {
         type: "add",
-        path: "src/pages/{{name}}/{{name}}.scss",
-        templateFile: "plop-templates/component/plop.component.scss",
+        path: "src/pages/{{kabobCase name}}/{{kabobCase name}}.scss",
+        templateFile: "plop-templates/page/plop.scss",
         abortOnFail: false
       },
       {
         type: "add",
-        path: "src/pages/{{name}}/{{name}}.html",
-        templateFile: "plop-templates/component/plop.component.html",
+        path: "src/pages/{{kabobCase name}}/{{kabobCase name}}.html",
+        templateFile: "plop-templates/page/plop.html",
         abortOnFail: false
       },
       {
         type: "add",
-        path: "src/pages/{{name}}/{{name}}.ts",
-        templateFile: "plop-templates/component/plop.component.ts",
+        path: "src/pages/{{kabobCase name}}/{{kabobCase name}}.ts",
+        templateFile: "plop-templates/page/plop.ts",
+        abortOnFail: false
+      },
+      {
+        type: "add",
+        path: "src/pages/{{kabobCase name}}/{{kabobCase name}}.module.ts",
+        templateFile: "plop-templates/page/plop.module.ts",
         abortOnFail: false
       }
     ]
