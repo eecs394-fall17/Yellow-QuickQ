@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
-import { InstructorFeedPage } from '../instructor-feed/instructor-feed';
-import { StudentFeedPage } from '../student-feed/student-feed';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {DashboardPage} from "../dashboard/dashboard";
+import {SideMenuComponent} from "../../app/components/sideMenu/sideMenu";
 /**
  * Generated class for the SignInPage page.
  *
@@ -23,8 +23,8 @@ export class SignInPage {
   instructors: FirebaseListObservable<any[]>;
 
   constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth, public navCtrl: NavController, public alertCtrl: AlertController) {
-    this.students = db.list('/Students'); 
-    this.instructors = db.list('/Instructors'); 
+    this.students = db.list('/Students');
+    this.instructors = db.list('/Instructors');
     this.afAuth.auth.onAuthStateChanged( user => {
       if (user) {
         // User is signed in... some data that we have now:
@@ -40,7 +40,7 @@ export class SignInPage {
         });
 
         //set page
-        //this.navCtrl.setRoot(StudentFeedPage);
+        this.navCtrl.setRoot(SideMenuComponent, {"user": user});
       } else {
         // user is signed out
         //this.navCtrl.setRoot(SignInPage);
@@ -70,24 +70,10 @@ export class SignInPage {
     });
   }
 
-  logout() {
-    this.afAuth.auth.signOut();
-    this.presentLogoutSuccessAlert();
-  }
-
   presentLoginFailureAlert() {
     const alert = this.alertCtrl.create({
       title: 'Failed to login',
       subTitle: 'Email or password is incorrect. Please try again.',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  presentLogoutSuccessAlert() {
-    const alert = this.alertCtrl.create({
-      title: 'Logged Out',
-      subTitle: 'You have successfully been logged out.',
       buttons: ['OK']
     });
     alert.present();

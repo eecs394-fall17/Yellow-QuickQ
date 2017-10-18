@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Modal, ModalController, PopoverController} from 'ionic-angular';
+import {MenuController, Modal, ModalController, PopoverController} from 'ionic-angular';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {SortPopOverComponent} from '../../app/components/sortPopOver/sortPopOver';
 import {PopOverSortCommService} from '../../app/services/popOverSortComm/popOverSortComm';
@@ -26,7 +26,8 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
   constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController,
-              private popOverSortCommService: PopOverSortCommService, public modalCtrl: ModalController) {                   // Inject database
+              private popOverSortCommService: PopOverSortCommService, public modalCtrl: ModalController,
+              private menuCtrl: MenuController) {                   // Inject database
     this.questions = db.list('/Questions');                       // The URL you want to fetch data from
     this.questions.subscribe(questions => {
       this.questions_as_array = questions;
@@ -114,6 +115,10 @@ export class StudentFeedPage implements OnInit, OnDestroy {
       const _question = this.db.object(str);
       _question.update({isResolved: false});
     })
+  }
+
+  openMenu(){
+    this.menuCtrl.open();
   }
 
 }

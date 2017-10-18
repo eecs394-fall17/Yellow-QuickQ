@@ -9,7 +9,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { InstructorFeedPage } from '../pages/instructor-feed/instructor-feed';
 import { StudentFeedPage } from '../pages/student-feed/student-feed';
-import { SignInPage } from '../pages/sign-in/sign-in';
 
 import { PeerToInstructorCardComponent } from './components/peerToInstructorCard/peerToInstructorCard';
 import { PeerToInstructorCardModule } from './components/peerToInstructorCard/peerToInstructorCard.module';
@@ -22,13 +21,15 @@ import { SharedModule } from './services/shared.module'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.module";
+import {SignInPageModule} from "../pages/sign-in/sign-in.module";
+import {DashboardPageModule} from "../pages/dashboard/dashboard.module";
+import {SideMenuCompModule} from "./components/sideMenu/sideMenu.module";
 
 @NgModule({
   declarations: [
     MyApp,
     InstructorFeedPage,
     StudentFeedPage,
-    SignInPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
@@ -40,14 +41,16 @@ import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.m
     AngularFireAuthModule,
     SharedModule.forRoot(),
     PeerToInstructorCardModule,
-    P2iNewQuestionModule
+    P2iNewQuestionModule,
+    SignInPageModule,
+    DashboardPageModule,
+    SideMenuCompModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     InstructorFeedPage,
     StudentFeedPage,
-    SignInPage,
     SortPopOverComponent,
     PeerToInstructorCardComponent
   ],
@@ -55,7 +58,7 @@ import {P2iNewQuestionModule} from "../pages/p2i-new-question/p2i-new-question.m
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PopOverSortCommService,
+    PopOverSortCommService
   ]
 })
 export class AppModule {}
