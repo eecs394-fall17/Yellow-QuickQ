@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from "ionic-angular";
+import {IonicPage, MenuController} from "ionic-angular";
 
 /**
  * This class represents the lazy loaded DashboardComponent.
@@ -11,7 +11,9 @@ import { IonicPage } from "ionic-angular";
 })
 export class DashboardPage {
 
-  constructor() {
+  constructor(private menuCtrl: MenuController) {}
 
+  openMenu(){
+    this.menuCtrl.open();
   }
 }

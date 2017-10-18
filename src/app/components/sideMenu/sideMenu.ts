@@ -1,10 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, MenuController, Nav} from "ionic-angular";
-import {InstructorFeedPage} from "../../../pages/instructor-feed/instructor-feed";
-import {StudentFeedPage} from "../../../pages/student-feed/student-feed";
+import {AlertController, MenuController, Nav, NavController, NavParams} from "ionic-angular";
 import {DashboardPage} from "../../../pages/dashboard/dashboard";
 import {AngularFireAuth} from "angularfire2/auth";
 import {SignInPage} from "../../../pages/sign-in/sign-in";
+import {BoardService} from "../../services/board/board.service";
 
 /**
  * This class represents the lazy loaded SideMenuComponent.
@@ -12,19 +11,27 @@ import {SignInPage} from "../../../pages/sign-in/sign-in";
 @Component({
   selector: 'sd-side-menu',
   templateUrl: 'sideMenu.html',
+  providers: [BoardService]
 })
 export class SideMenuComponent {
   @ViewChild(Nav) navi: Nav;
 
   mainRootPage = DashboardPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, params: {}}>;
+  user: any;
 
-  constructor(private menuCtrl: MenuController, private afAuth: AngularFireAuth, private alertCtrl: AlertController) {
+  constructor(private menuCtrl: MenuController, private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navParams: NavParams, private boardService: BoardService) {
     // set our app's pages
-    this.pages = [
-      { title: 'Instructor Feed Page', component: InstructorFeedPage },
-      { title: 'Student Feed Page', component: StudentFeedPage }
-    ];
+    this.user = navParams.get("user");
+
+    this.boardService.initialize(this.user.uid, boards => {
+      this.pages = boards;
+    });
+  }
+
+  toDashboard(){
+    this.menuCtrl.close();
+    this.navi.setRoot(DashboardPage);
   }
 
   openPage(page) {
@@ -37,6 +44,14 @@ export class SideMenuComponent {
   logout() {
     this.afAuth.auth.signOut();
     this.presentLogoutSuccessAlert();
+    /**
+     * Think Ionic has a bug here.
+     * If we set root only once. Menu won't show
+     * up after the second time we sign in.
+     * At the same time, setting root twice doesn't
+     * seems causing any problem.
+     */
+    this.navi.parent.setRoot(SignInPage);
     this.navi.parent.setRoot(SignInPage);
   }
 

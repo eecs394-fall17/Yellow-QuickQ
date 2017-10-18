@@ -40,7 +40,7 @@ export class SignInPage {
         });
 
         //set page
-        this.navCtrl.setRoot(SideMenuComponent);
+        this.navCtrl.setRoot(SideMenuComponent, {"user": user});
       } else {
         // user is signed out
         //this.navCtrl.setRoot(SignInPage);
