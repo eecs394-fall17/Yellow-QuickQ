@@ -38,7 +38,7 @@ export class SideMenuComponent {
     // close the menu when clicking a link from the menu
     this.menuCtrl.close();
     // navigate to the new page if it is not the current page
-    this.navi.setRoot(page.component);
+    this.navi.setRoot(page.component, {boardId: page.params.bid});
   }
 
   logout() {

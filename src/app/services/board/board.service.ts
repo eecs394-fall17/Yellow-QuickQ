@@ -20,12 +20,12 @@ export class BoardService {
       result.push({
         title: board.Title + "_STU",
         component: StudentFeedPage,
-        params: {uid: self.userId}
+        params: {uid: self.userId, bid: board.$key}
       });
       result.push({
         title: board.Title + "_INS",
         component: InstructorFeedPage,
-        params: {uid: self.userId}
+        params: {uid: self.userId, bid: board.$key}
       });
     });
     return result;
