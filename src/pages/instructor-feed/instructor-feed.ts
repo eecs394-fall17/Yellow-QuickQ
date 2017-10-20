@@ -32,9 +32,9 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
                 this.board = db.object('/Boards/' + this.boardId);
                 this.questions = db.list('/Questions');
                 this.questions.subscribe(questions => {
-                this.questions_as_array = questions.filter(question => question.BID == this.boardId);
-                this.sorted_questions_as_array = this.getSortedCards();
-               });
+                  this.questions_as_array = questions.filter(question => question.BID == this.boardId);
+                  this.sorted_questions_as_array = this.getSortedCards();
+                });
 }
 
   ngOnInit():void{
