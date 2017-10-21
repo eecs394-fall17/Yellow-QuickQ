@@ -5,7 +5,7 @@
         <img width="32px" height="32px" src="assets/icon/app_icon/app_icon_blue_nobk_64_64.png"/>
       </button>
     </ion-buttons>
-	  <ion-title>{{ ( board | async)?.Title }}</ion-title>
+	  <ion-title>{{title}}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only color="dark" (click)="displaySortPopover($event)">
         <ion-icon name="md-funnel"></ion-icon>

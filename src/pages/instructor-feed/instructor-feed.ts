@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
-import {MenuController, PopoverController} from 'ionic-angular';
+import {MenuController, PopoverController, NavParams} from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { SortPopOverComponent } from '../../app/components/sortPopOver/sortPopOver';
 import { PopOverSortCommService } from '../../app/services/popOverSortComm/popOverSortComm';
@@ -14,6 +14,10 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
+  page:any;
+
+  title:string;
+  bid:string;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -24,19 +28,20 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController,
-              private popOverSortCommService: PopOverSortCommService,
-              private menuCtrl: MenuController) {                   // Inject database
-    this.questions = db.list('/Questions');                       // The URL you want to fetch data from
-    console.log('this.questions 1 is: ', this.questions)
+  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController, private navParams: NavParams,
+    private popOverSortCommService: PopOverSortCommService, private menuCtrl: MenuController ) {                   // Inject database
+    
+    this.page = navParams.get("page");
+    this.extractNavData(this.page);
+
+    // The URL you want to fetch data from
+    this.questions = db.list('/Questions');
     this.questions.subscribe(questions => {
-      this.questions_as_array = questions;
-      console.log("questions is: ", questions);
-      console.log("this.questions_as_array is: ", this.questions_as_array);
+      let boardqs = _.filter(questions, (question)=> question.BID===this.bid )
+      this.questions_as_array = boardqs;
       this.sorted_questions_as_array = this.getSortedCards();
-      console.log("this.questions_as_array is: ", this.sorted_questions_as_array);
     });
-    this.board = db.object('/Boards/bid-1234');
+    this.board = db.object('/Boards/'+this.bid);
   }
 
   ngOnInit():void{
@@ -53,16 +58,22 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  extractNavData(page){
+    this.title = page.title;
+    this.bid = page.bid;
+  }
+
+
   displaySortPopover(myEvent) {
     this.sortPopover = this.popoverCtrl.create(SortPopOverComponent, {
       sortMechanism: this.sortedBy,
     });
     this.sortPopover.onDidDismiss((data:{pop:boolean}) => {
-      console.log("ON DID DISMISS, ", data)
+      // console.log("ON DID DISMISS, ", data)
       this.sortPopover=null;
     });
     this.sortPopover.onWillDismiss((data:any) => {
-      console.log("ON WILL DISMISS, ", data)
+      // console.log("ON WILL DISMISS, ", data)
       this.sortPopover=null;
     })
     this.sortPopover.present({ev: myEvent, sortMechanism: this.sortedBy})
@@ -102,7 +113,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
           return q.isResolved
         });
         sorted = _.concat(this.sortCards(unresolved, 'TimeFIFO'), this.sortCards(resolved, 'TimeFIFO'));
-        console.log("sorted is: ", sorted);
+        // console.log("sorted is: ", sorted);
         return sorted;
     }
   }

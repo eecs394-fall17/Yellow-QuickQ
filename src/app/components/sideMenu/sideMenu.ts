@@ -17,7 +17,7 @@ export class SideMenuComponent {
   @ViewChild(Nav) navi: Nav;
 
   mainRootPage = DashboardPage;
-  pages: Array<{title: string, component: any, params: {}}>;
+  pages: Array<{title: string, bid:string, component: any, params: {}}>;
   user: any;
 
   constructor(private menuCtrl: MenuController, private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navParams: NavParams, private boardService: BoardService) {
@@ -26,20 +26,21 @@ export class SideMenuComponent {
     console.log('sideMenu constructor. This.user is: ', this.user);
     this.boardService.initialize(this.user.uid, boards => {
       this.pages = boards;
+      console.log("this.pages is: ", this.pages);
     });
   }
 
   toDashboard(){
     console.log("toDashboard called with this.,user is: ", this.user);
     this.menuCtrl.close();
-    // this.navi.setRoot(DashboardPage, {"user":this.user});
+    this.navi.setRoot(DashboardPage, {"user":this.user});
   }
 
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menuCtrl.close();
     // navigate to the new page if it is not the current page
-    this.navi.setRoot(page.component);
+    this.navi.setRoot(page.component, {"page":page});
   }
 
   logout() {

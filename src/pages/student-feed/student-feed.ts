@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {MenuController, Modal, ModalController, PopoverController} from 'ionic-angular';
+import {MenuController, Modal, ModalController, NavParams, PopoverController} from 'ionic-angular';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {SortPopOverComponent} from '../../app/components/sortPopOver/sortPopOver';
 import {PopOverSortCommService} from '../../app/services/popOverSortComm/popOverSortComm';
@@ -15,6 +15,10 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
+  page:any;
+
+  title:string;
+  bid:string;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -25,15 +29,19 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController,
-              private popOverSortCommService: PopOverSortCommService, public modalCtrl: ModalController,
-              private menuCtrl: MenuController) {                   // Inject database
+  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController, public modalCtrl: ModalController,
+    private popOverSortCommService: PopOverSortCommService,  private menuCtrl: MenuController, private navParams: NavParams) {
+
+    this.page = navParams.get("page");
+    this.extractNavData(this.page);
+
     this.questions = db.list('/Questions');                       // The URL you want to fetch data from
     this.questions.subscribe(questions => {
-      this.questions_as_array = questions;
+      let boardqs = _.filter(questions, (question)=> question.BID===this.bid )
+      this.questions_as_array = boardqs;
       this.sorted_questions_as_array = this.getSortedCards();
     });
-    this.board = db.object('/Boards/bid-1234');
+    this.board = db.object('/Boards/'+this.bid);
   }
 
   ngOnInit(): void {
@@ -49,6 +57,12 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+   extractNavData(page){
+    this.title = page.title;
+    this.bid = page.bid;
+  }
+
 
   displaySortPopover(myEvent) {
     this.sortPopover = this.popoverCtrl.create(SortPopOverComponent, {

@@ -16,7 +16,6 @@ export class DashboardPage {
 	private courses:any;
 	pages: Array<{title: string, component: any, params: {}}>;
  	user: any;
- 	@ViewChild(Nav) navi: Nav;
 
   	constructor(private menuCtrl: MenuController,private navParams: NavParams, public navCtrl: NavController, private boardService: BoardService) {
 	  	this.user = navParams.get("user");
@@ -34,6 +33,7 @@ export class DashboardPage {
 
 	openPage(p){
 	    // navigate to the new page if it is not the current page
-	    this.navCtrl.setRoot(p.component);
+	    console.log("openPage p, where p is: ", p);
+	    this.navCtrl.setRoot(p.component, {"page":p});
 	}
 }

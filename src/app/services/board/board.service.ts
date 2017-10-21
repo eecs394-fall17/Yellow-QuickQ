@@ -10,21 +10,23 @@ import {InstructorFeedPage} from "../../../pages/instructor-feed/instructor-feed
 export class BoardService {
   private boards:FirebaseListObservable<any[]>;
   private userId:String;
-  private formattedBoards:Array<{title: string, component: any, params: {}}>;
+  private formattedBoards:Array<{title: string, bid:string, component: any, params: {}}>;
 
   constructor(private db: AngularFireDatabase){}
 
   private formatData(boards){
-    let result:Array<{title: string, component: any, params: {}}> = [];
+    let result:Array<{title: string, bid:string, component: any, params: {}}> = [];
     let self = this;
     boards.forEach(function (board: any) {
       result.push({
         title: board.Title + "_STU",
+        bid: "bid-" + board.bid,
         component: StudentFeedPage,
         params: {uid: self.userId}
       });
       result.push({
         title: board.Title + "_INS",
+        bid: "bid-" + board.bid,
         component: InstructorFeedPage,
         params: {uid: self.userId}
       });
