@@ -10,6 +10,7 @@ import {InstructorFeedPage} from "../../../pages/instructor-feed/instructor-feed
 export class BoardService {
   private boards:FirebaseListObservable<any[]>;
   private userId:String;
+  private formattedBoards:Array<{title: string, component: any, params: {}}>;
 
   constructor(private db: AngularFireDatabase){}
 
@@ -33,10 +34,23 @@ export class BoardService {
 
   public initialize(id, callback){
     this.userId = id;
-
     this.boards = this.db.list('/Boards');
     this.boards.subscribe(boards => {
-      callback(this.formatData(boards));
+      this.formattedBoards = this.formatData(boards);
+      callback(this.formattedBoards);
     });
+  }
+
+  public getFormattedBoards(callback){
+    if(this.formattedBoards){
+      return this.formattedBoards;
+    }
+    else{
+      let boards_call = this.db.list('/Boards');
+      boards_call.subscribe(boards => {
+        this.formattedBoards = this.formatData(boards);
+        callback(this.formattedBoards);
+      });
+    }
   }
 }

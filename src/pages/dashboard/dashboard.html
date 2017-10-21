@@ -6,6 +6,24 @@
       </button>
     </ion-buttons>
     <ion-title>Dashboard</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only color="dark">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>Template Page Dashboard</ion-content>
+<ion-content padding>
+	<div *ngIf="pages && pages.length==0">
+    <div>
+		  <h1>Welcome to QuickQ!</h1>
+    </div>
+    <div>
+		  <p>Please join or create a board to get started. You can do so by clicking on the add icon in the top right corner.</p>
+    </div>
+  </div>
+  <div *ngIf="pages && pages.length>0">
+    <!-- <p *ngFor="let page of pages">This is a page with title: {{page.title}}</p> -->
+    <sd-board-card *ngFor="let page of pages" [data]=page (click)="openPage(page)"></sd-board-card>
+  </div>
+</ion-content>
