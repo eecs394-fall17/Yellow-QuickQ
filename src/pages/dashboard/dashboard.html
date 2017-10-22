@@ -24,6 +24,7 @@
   </div>
   <div *ngIf="pages && pages.length>0">
     <!-- <p *ngFor="let page of pages">This is a page with title: {{page.title}}</p> -->
-    <sd-board-card *ngFor="let page of pages" [data]=page (click)="openPage(page)"></sd-board-card>
+    <sd-board-card *ngFor="let page of boards" [data]=page (click)="openPage(page)"></sd-board-card>
+    <!-- <sd-board-card *ngFor="let page of instructorBoards" [data]=page (click)="openPage(page)"></sd-board-card> -->
   </div>
 </ion-content>

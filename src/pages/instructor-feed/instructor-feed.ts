@@ -14,10 +14,9 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
-  page:any;
 
   title:string;
-  bid:string;
+  boardId: String;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -28,21 +27,18 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController, private navParams: NavParams,
-    private popOverSortCommService: PopOverSortCommService, private menuCtrl: MenuController ) {                   // Inject database
-    
-    this.page = navParams.get("page");
-    this.extractNavData(this.page);
-
-    // The URL you want to fetch data from
-    this.questions = db.list('/Questions');
-    this.questions.subscribe(questions => {
-      let boardqs = _.filter(questions, (question)=> question.BID===this.bid )
-      this.questions_as_array = boardqs;
-      this.sorted_questions_as_array = this.getSortedCards();
-    });
-    this.board = db.object('/Boards/'+this.bid);
-  }
+  constructor(public db: AngularFireDatabase, public navParams: NavParams, public popoverCtrl: PopoverController,
+              private popOverSortCommService: PopOverSortCommService,
+              private menuCtrl: MenuController) {
+                this.boardId = navParams.get("boardId");
+                this.title = navParams.get("title");
+                this.board = db.object('/Boards/' + this.boardId);
+                this.questions = db.list('/Questions');
+                this.questions.subscribe(questions => {
+                  this.questions_as_array = questions.filter(question => question.BID == this.boardId);
+                  this.sorted_questions_as_array = this.getSortedCards();
+                });
+}
 
   ngOnInit():void{
     this.subscription = this.popOverSortCommService.sortMech$.subscribe(
@@ -57,13 +53,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   ngOnDestroy():void{
     this.subscription.unsubscribe();
   }
-
-  extractNavData(page){
-    this.title = page.title;
-    this.bid = page.bid;
-  }
-
-
+  
   displaySortPopover(myEvent) {
     this.sortPopover = this.popoverCtrl.create(SortPopOverComponent, {
       sortMechanism: this.sortedBy,
@@ -131,5 +121,3 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   }
 
 }
-
-

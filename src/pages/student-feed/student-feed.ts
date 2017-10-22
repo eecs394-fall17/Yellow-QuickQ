@@ -15,10 +15,9 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
-  page:any;
 
   title:string;
-  bid:string;
+  boardId: String;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -29,19 +28,16 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController, public modalCtrl: ModalController,
-    private popOverSortCommService: PopOverSortCommService,  private menuCtrl: MenuController, private navParams: NavParams) {
-
-    this.page = navParams.get("page");
-    this.extractNavData(this.page);
-
-    this.questions = db.list('/Questions');                       // The URL you want to fetch data from
-    this.questions.subscribe(questions => {
-      let boardqs = _.filter(questions, (question)=> question.BID===this.bid )
-      this.questions_as_array = boardqs;
-      this.sorted_questions_as_array = this.getSortedCards();
-    });
-    this.board = db.object('/Boards/'+this.bid);
+  constructor(public db: AngularFireDatabase, public navParams: NavParams, public popoverCtrl: PopoverController,
+              private popOverSortCommService: PopOverSortCommService, public modalCtrl: ModalController,
+              private menuCtrl: MenuController) {
+      this.boardId = navParams.get("boardId");
+      this.board = db.object('/Boards/' + this.boardId);
+      this.questions = db.list('/Questions');
+      this.questions.subscribe(questions => {
+        this.questions_as_array = questions.filter(question => question.BID == this.boardId);
+        this.sorted_questions_as_array = this.getSortedCards();
+      });
   }
 
   ngOnInit(): void {
@@ -57,12 +53,6 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-   extractNavData(page){
-    this.title = page.title;
-    this.bid = page.bid;
-  }
-
 
   displaySortPopover(myEvent) {
     this.sortPopover = this.popoverCtrl.create(SortPopOverComponent, {
@@ -119,7 +109,7 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   }
 
   createNewQuestion(event) {
-    const newQuestionModal:Modal = this.modalCtrl.create(P2iNewQuestionPage);
+    const newQuestionModal:Modal = this.modalCtrl.create(P2iNewQuestionPage, {boardId: this.boardId});
     newQuestionModal.present();
   }
 

@@ -26,24 +26,8 @@ export class SignInPage {
     this.instructors = db.list('/Instructors');
     this.afAuth.auth.onAuthStateChanged( user => {
       if (user) {
-        // User is signed in... some data that we have now:
-        var displayName = user.displayName;
-        var email = user.email;
-        var uid = user.uid;
-        console.log('name: ' + displayName);
-        console.log('email: ' + email);
-        console.log('uid: ' + uid);
-        // get boardIDs
-        this.students.subscribe(students => {
-          console.log(students);
-        });
-       
-        //set page
         this.navCtrl.setRoot(SideMenuComponent, {"user": user});
-      } else {
-        // user is signed out
-        //this.navCtrl.setRoot(SignInPage);
-      }
+      } else { }
     });
   }
 

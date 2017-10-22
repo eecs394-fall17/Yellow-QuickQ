@@ -5,7 +5,10 @@
     </ion-title>
     <button ion-item (click)="toDashboard()">Dashboard</button>
     <ion-list>
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button ion-item *ngFor="let p of studentBoards" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+      <button ion-item *ngFor="let p of instructorBoards" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
