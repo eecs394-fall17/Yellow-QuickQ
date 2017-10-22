@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, ViewController} from "ionic-angular";
+import {IonicPage, ViewController, NavParams} from "ionic-angular";
 import {AngularFireDatabase} from "angularfire2/database";
 
 /**
@@ -15,9 +15,10 @@ export class P2iNewQuestionPage {
   questionTitle: string = "";
   questionDescription: string = "";
   isAnonymous: boolean = false;
+  boardId: string;
 
-  constructor(private view: ViewController, private db:AngularFireDatabase) {
-
+  constructor(public navParams: NavParams, private view: ViewController, private db:AngularFireDatabase) {
+    this.boardId = navParams.get("boardId");
   }
 
   closeModal() {
@@ -29,7 +30,7 @@ export class P2iNewQuestionPage {
     questions.push(
       {
         "Poster": "Jianyou Fang",
-        "BID": "bid-1234",
+        "BID": this.boardId,
         "Description": this.questionDescription,
         "Timestamp": Date.now(),
         "Title": this.questionTitle,
