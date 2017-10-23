@@ -17,7 +17,7 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   board: FirebaseObjectObservable<any>;
 
   title:string;
-  boardId: String;
+  boardId: string;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -31,10 +31,11 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   constructor(public db: AngularFireDatabase, public navParams: NavParams, public popoverCtrl: PopoverController,
               private popOverSortCommService: PopOverSortCommService, public modalCtrl: ModalController,
               private menuCtrl: MenuController) {
-      this.boardId = navParams.get("boardId");
-      this.board = db.object('/Boards/' + this.boardId);
-      this.questions = db.list('/Questions');
-      this.questions.subscribe(questions => {
+        this.boardId = navParams.get("boardId");
+        this.title = navParams.get("title");
+        this.board = db.object('/Boards/' + this.boardId);
+        this.questions = db.list('/Questions');
+        this.questions.subscribe(questions => {
         this.questions_as_array = questions.filter(question => question.BID == this.boardId);
         this.sorted_questions_as_array = this.getSortedCards();
       });

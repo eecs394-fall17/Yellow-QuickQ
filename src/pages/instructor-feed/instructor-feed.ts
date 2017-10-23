@@ -16,7 +16,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   board: FirebaseObjectObservable<any>;
 
   title:string;
-  boardId: String;
+  boardId:string;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
