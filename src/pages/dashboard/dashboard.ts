@@ -22,15 +22,12 @@ export class DashboardPage implements OnInit, OnDestroy  {
 
   	constructor(private menuCtrl: MenuController,private navParams: NavParams, public navCtrl: NavController, private boardService: BoardService) {
 	  	this.user = navParams.get("user");
-	  	console.log("dashboard constructor opened with this.user is = ", this.user);
   	}
 
   	ngOnInit():void{
     	this.boardSub = this.boardService.boards$.subscribe(
 		  item => {
-		  	console.log('the dashboard subscription received item: ', item);
 		    if(item){
-		    	console.log(item);
 		      	this.boards=item;
 		    }
 		});
@@ -46,6 +43,6 @@ export class DashboardPage implements OnInit, OnDestroy  {
 
 	openPage(p){
 	    // navigate to the new page if it is not the current page
-	    this.navCtrl.setRoot(p.component, {boardId: p.params.bid, title:p.params.Title});
+	    this.navCtrl.setRoot(p.component, {boardId: p.params.bid, title:p.title});
 	}
 }

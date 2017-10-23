@@ -24,7 +24,6 @@ export class SideMenuComponent {
   constructor(private menuCtrl: MenuController, private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navParams: NavParams, private boardService: BoardService) {
     // set our app's pages
     this.user = navParams.get("user");
-    console.log('sideMenu constructor. This.user is: ', this.user);
     this.boardService.initialize(this.user.uid, (studentBoards, instructorBoards) => {
       this.studentBoards = studentBoards;
       this.instructorBoards = instructorBoards;
@@ -32,7 +31,6 @@ export class SideMenuComponent {
   }
 
   toDashboard(){
-    console.log("toDashboard called with this.,user is: ", this.user);
     this.menuCtrl.close();
     this.navi.setRoot(DashboardPage, {"user":this.user});
   }
@@ -41,7 +39,7 @@ export class SideMenuComponent {
     // close the menu when clicking a link from the menu
     this.menuCtrl.close();
     // navigate to the new page if it is not the current page
-    this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.params.Title});
+    this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.title});
   }
 
   logout() {
