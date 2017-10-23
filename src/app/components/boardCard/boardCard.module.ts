@@ -5,4 +5,4 @@ import { SharedModule } from "../../services/shared.module";
 @NgModule({
   imports: [CommonModule, SharedModule.forRoot()],
 })
-export class PeerToInstructorCardModule { }
+export class BoardCardModule { }

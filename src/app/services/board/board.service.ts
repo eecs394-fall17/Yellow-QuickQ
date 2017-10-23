@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {StudentFeedPage} from "../../../pages/student-feed/student-feed";
 import {InstructorFeedPage} from "../../../pages/instructor-feed/instructor-feed";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class BoardService {
@@ -16,6 +18,9 @@ export class BoardService {
   private filteredStudentBoards: any;
   private filteredInstructorBoards: any;
   private userId:String;
+
+  private notificationSource = new BehaviorSubject<any>(null);
+  boards$ = this.notificationSource.asObservable();
 
   constructor(private db: AngularFireDatabase){
   }
@@ -71,7 +76,12 @@ export class BoardService {
           return userBoard.$value === board.$key;
         }).length != 0;
       });
-      callback(this.formatData(this.filteredStudentBoards, this.filteredInstructorBoards));
+      console.log("initialized with this.filteredStudentBoards: ", this.filteredStudentBoards);
+      console.log("initialized with this.filteredInstructorBoards: ", this.filteredInstructorBoards);
+      let formattedBoards = this.formatData(this.filteredStudentBoards, this.filteredInstructorBoards);
+      console.log("calling notification source with formattedBoards: ", formattedBoards);
+      this.notificationSource.next(formattedBoards);
+      callback(formattedBoards);
     });
   }
 }

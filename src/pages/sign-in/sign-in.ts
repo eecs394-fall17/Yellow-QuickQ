@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import {DashboardPage} from "../dashboard/dashboard";
-import {SideMenuComponent} from "../../app/components/sideMenu/sideMenu";
+import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { SideMenuComponent} from "../../app/components/sideMenu/sideMenu";
 /**
  * Generated class for the SignInPage page.
  *
