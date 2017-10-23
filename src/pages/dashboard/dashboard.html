@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-	<div *ngIf="pages && pages.length==0">
+	<div *ngIf="boards && boards.length==0">
     <div>
 		  <h1>Welcome to QuickQ!</h1>
     </div>
@@ -22,9 +22,9 @@
 		  <p>Please join or create a board to get started. You can do so by clicking on the add icon in the top right corner.</p>
     </div>
   </div>
-  <div *ngIf="pages && pages.length>0">
+  <div *ngIf="boards && boards.length>0">
     <!-- <p *ngFor="let page of pages">This is a page with title: {{page.title}}</p> -->
-    <sd-board-card *ngFor="let page of boards" [data]=page (click)="openPage(page)"></sd-board-card>
+    <sd-board-card *ngFor="let board of boards" [data]=board (click)="openPage(board)"></sd-board-card>
     <!-- <sd-board-card *ngFor="let page of instructorBoards" [data]=page (click)="openPage(page)"></sd-board-card> -->
   </div>
 </ion-content>
