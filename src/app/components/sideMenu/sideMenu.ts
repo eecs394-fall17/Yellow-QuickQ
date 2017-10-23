@@ -19,7 +19,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   mainRootPage = DashboardPage;
   boards: Array<{title: string, bid:string, component: any, params: {}}>;
-  selectedBoard: any = 'dashboard';
+  selectedBoard: any;
   user: any;
   boardSub: Subscription;
 
@@ -36,6 +36,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       (boards) => {
         self.boards = boards;
       });
+    this.boardService.currentBoard$.subscribe(
+      (board) => {
+        self.selectedBoard = board;
+      });
   }
 
   ngOnDestroy():void{
@@ -44,14 +48,14 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   toDashboard(){
     this.menuCtrl.close();
-    this.selectedBoard = 'dashboard';
+    this.boardService.setCurrentPage('dashboard');
     this.navi.setRoot(DashboardPage, {"user":this.user});
   }
 
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menuCtrl.close();
-    this.selectedBoard = page;
+    this.boardService.setCurrentPage(page);
     // navigate to the new page if it is not the current page
     this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.title});
   }

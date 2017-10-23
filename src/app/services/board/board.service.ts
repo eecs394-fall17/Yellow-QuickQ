@@ -21,6 +21,8 @@ export class BoardService {
 
   private notificationSource = new BehaviorSubject<any>(null);
   boards$ = this.notificationSource.asObservable();
+  private boardSource = new BehaviorSubject<any>(null);
+  currentBoard$ = this.boardSource.asObservable();
 
   constructor(private db: AngularFireDatabase){
   }
@@ -81,6 +83,11 @@ export class BoardService {
       let formattedBoards = this.formatData(this.filteredStudentBoards, this.filteredInstructorBoards);
       // console.log("calling notification source with formattedBoards: ", formattedBoards);
       this.notificationSource.next(formattedBoards);
+      this.boardSource.next('dashboard');
     });
+  }
+
+  public setCurrentPage(page){
+    this.boardSource.next(page);
   }
 }
