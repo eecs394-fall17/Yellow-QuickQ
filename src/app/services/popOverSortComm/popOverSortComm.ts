@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/map'
-// import 'rxjs/add/operator/do';  // for debugging
 
 /**
  * This class provides the PopOverSortComm service

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
-import {MenuController, PopoverController, NavParams } from 'ionic-angular';
+import {MenuController, PopoverController, NavParams} from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { SortPopOverComponent } from '../../app/components/sortPopOver/sortPopOver';
 import { PopOverSortCommService } from '../../app/services/popOverSortComm/popOverSortComm';
@@ -14,6 +14,8 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
+
+  title:string;
   boardId: String;
 
   questions_as_array: any;
@@ -29,6 +31,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
               private popOverSortCommService: PopOverSortCommService,
               private menuCtrl: MenuController) {
                 this.boardId = navParams.get("boardId");
+                this.title = navParams.get("title");
                 this.board = db.object('/Boards/' + this.boardId);
                 this.questions = db.list('/Questions');
                 this.questions.subscribe(questions => {
@@ -50,17 +53,17 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   ngOnDestroy():void{
     this.subscription.unsubscribe();
   }
-
+  
   displaySortPopover(myEvent) {
     this.sortPopover = this.popoverCtrl.create(SortPopOverComponent, {
       sortMechanism: this.sortedBy,
     });
     this.sortPopover.onDidDismiss((data:{pop:boolean}) => {
-      console.log("ON DID DISMISS, ", data)
+      // console.log("ON DID DISMISS, ", data)
       this.sortPopover=null;
     });
     this.sortPopover.onWillDismiss((data:any) => {
-      console.log("ON WILL DISMISS, ", data)
+      // console.log("ON WILL DISMISS, ", data)
       this.sortPopover=null;
     })
     this.sortPopover.present({ev: myEvent, sortMechanism: this.sortedBy})
@@ -100,7 +103,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
           return q.isResolved
         });
         sorted = _.concat(this.sortCards(unresolved, 'TimeFIFO'), this.sortCards(resolved, 'TimeFIFO'));
-        console.log("sorted is: ", sorted);
+        // console.log("sorted is: ", sorted);
         return sorted;
     }
   }
@@ -118,5 +121,3 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   }
 
 }
-
-

@@ -1,0 +1,17 @@
+@import '../../app.scss';
+
+.scroll-content{
+  padding: 0 !important;
+}
+
+ion-card {
+	margin: 12px 8px !important;
+	width: calc(100% - 16px) !important;
+	transition: height 1s, border-top .4s, padding 1s !important;
+	.peer2ins-card-title{
+    //display: inline;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
