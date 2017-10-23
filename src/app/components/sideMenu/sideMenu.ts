@@ -43,7 +43,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   }
 
   toDashboard(){
-    console.log("toDashboard called with this.,user is: ", this.user);
     this.menuCtrl.close();
     this.selectedBoard = 'dashboard';
     this.navi.setRoot(DashboardPage, {"user":this.user});
@@ -54,7 +53,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.menuCtrl.close();
     this.selectedBoard = page;
     // navigate to the new page if it is not the current page
-    this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.params.Title});
+    this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.title});
   }
 
   logout() {
