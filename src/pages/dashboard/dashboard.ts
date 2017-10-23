@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
-  providers:[BoardService]
 })
 export class DashboardPage implements OnInit, OnDestroy  {
 	private courses:any;
