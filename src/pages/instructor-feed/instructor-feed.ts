@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
-import {MenuController, PopoverController} from 'ionic-angular';
+import {MenuController, PopoverController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { SortPopOverComponent } from '../../app/components/sortPopOver/sortPopOver';
 import { PopOverSortCommService } from '../../app/services/popOverSortComm/popOverSortComm';
@@ -14,6 +14,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   questions: FirebaseListObservable<any[]>;
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
+  boardId: String;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -24,20 +25,17 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
   subscription: Subscription;
   // @ViewChild(SortPopOverComponent) sortPopOverChild: SortPopOverComponent;
 
-  constructor(public db: AngularFireDatabase, public popoverCtrl: PopoverController,
+  constructor(public db: AngularFireDatabase, public navParams: NavParams, public popoverCtrl: PopoverController,
               private popOverSortCommService: PopOverSortCommService,
-              private menuCtrl: MenuController) {                   // Inject database
-    this.questions = db.list('/Questions');                       // The URL you want to fetch data from
-    console.log('this.questions 1 is: ', this.questions)
-    this.questions.subscribe(questions => {
-      this.questions_as_array = questions;
-      console.log("questions is: ", questions);
-      console.log("this.questions_as_array is: ", this.questions_as_array);
-      this.sorted_questions_as_array = this.getSortedCards();
-      console.log("this.questions_as_array is: ", this.sorted_questions_as_array);
-    });
-    this.board = db.object('/Boards/bid-1234');
-  }
+              private menuCtrl: MenuController) {
+                this.boardId = navParams.get("boardId");
+                this.board = db.object('/Boards/' + this.boardId);
+                this.questions = db.list('/Questions');
+                this.questions.subscribe(questions => {
+                  this.questions_as_array = questions.filter(question => question.BID == this.boardId);
+                  this.sorted_questions_as_array = this.getSortedCards();
+                });
+}
 
   ngOnInit():void{
     this.subscription = this.popOverSortCommService.sortMech$.subscribe(
