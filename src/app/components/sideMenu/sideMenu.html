@@ -3,13 +3,10 @@
     <ion-title padding>
       Hello{{user.name? ", " + user.name: ""}}
     </ion-title>
-    <button ion-item (click)="toDashboard()">Dashboard</button>
+    <button ion-item (click)="toDashboard()" [ngClass]="{'selected-menu-item': selectedBoard == 'dashboard'}">Dashboard</button>
     <ion-list>
-      <button ion-item *ngFor="let p of studentBoards" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-      <button ion-item *ngFor="let p of instructorBoards" (click)="openPage(p)">
-        {{p.title}}
+      <button ion-item *ngFor="let p of boards" (click)="openPage(p)">
+        <span [ngClass]="{'selected-menu-item': p==selectedBoard}">{{p.title}}</span>
       </button>
     </ion-list>
     <button ion-button full (click)="logout()">Sign out</button>
