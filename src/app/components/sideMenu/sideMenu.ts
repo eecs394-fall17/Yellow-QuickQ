@@ -1,9 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AlertController, MenuController, Nav, NavController, NavParams} from "ionic-angular";
 import {DashboardPage} from "../../../pages/dashboard/dashboard";
 import {AngularFireAuth} from "angularfire2/auth";
 import {SignInPage} from "../../../pages/sign-in/sign-in";
 import {BoardService} from "../../services/board/board.service";
+import {Subscription} from "rxjs/Subscription";
 
 /**
  * This class represents the lazy loaded SideMenuComponent.
@@ -13,31 +14,48 @@ import {BoardService} from "../../services/board/board.service";
   templateUrl: 'sideMenu.html',
   providers: [BoardService]
 })
-export class SideMenuComponent {
+export class SideMenuComponent implements OnInit, OnDestroy {
   @ViewChild(Nav) navi: Nav;
 
   mainRootPage = DashboardPage;
-  studentBoards: Array<{title: string, bid:string, component: any, params: {}}>;
-  instructorBoards: Array<{title: string, bid:string, component: any, params: {}}>;
+  boards: Array<{title: string, bid:string, component: any, params: {}}>;
+  selectedBoard: any;
   user: any;
+  boardSub: Subscription;
 
   constructor(private menuCtrl: MenuController, private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navParams: NavParams, private boardService: BoardService) {
     // set our app's pages
     this.user = navParams.get("user");
-    this.boardService.initialize(this.user.uid, (studentBoards, instructorBoards) => {
-      this.studentBoards = studentBoards;
-      this.instructorBoards = instructorBoards;
-    });
+    console.log('sideMenu constructor. This.user is: ', this.user);
+    this.boardService.initialize(this.user.uid);
+  }
+
+  ngOnInit():void{
+    let self = this;
+    this.boardSub = this.boardService.boards$.subscribe(
+      (boards) => {
+        self.boards = boards;
+      });
+    this.boardService.currentBoard$.subscribe(
+      (board) => {
+        self.selectedBoard = board;
+      });
+  }
+
+  ngOnDestroy():void{
+    this.boardSub.unsubscribe();
   }
 
   toDashboard(){
     this.menuCtrl.close();
+    this.boardService.setCurrentPage('dashboard');
     this.navi.setRoot(DashboardPage, {"user":this.user});
   }
 
   openPage(page) {
     // close the menu when clicking a link from the menu
     this.menuCtrl.close();
+    this.boardService.setCurrentPage(page);
     // navigate to the new page if it is not the current page
     this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.title});
   }

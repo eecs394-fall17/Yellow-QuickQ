@@ -21,6 +21,8 @@ export class BoardService {
 
   private notificationSource = new BehaviorSubject<any>(null);
   boards$ = this.notificationSource.asObservable();
+  private boardSource = new BehaviorSubject<any>(null);
+  currentBoard$ = this.boardSource.asObservable();
 
   constructor(private db: AngularFireDatabase){
   }
@@ -52,7 +54,7 @@ export class BoardService {
     this.studentBoardIds.subscribe(students => {
       this.studentBoardIds_arr = students;
     });
-    
+
 
     this.instructorBoardIds = this.db.list('/Instructors/' + this.userId);
     this.instructorBoardIds.subscribe(instructors => {
@@ -60,7 +62,7 @@ export class BoardService {
     });
   }
 
-  public initialize(id, callback){
+  public initialize(id){
     this.userId = id;
     this.setUserBoards();
 
@@ -76,12 +78,16 @@ export class BoardService {
           return userBoard.$value === board.$key;
         }).length != 0;
       });
-      console.log("initialized with this.filteredStudentBoards: ", this.filteredStudentBoards);
-      console.log("initialized with this.filteredInstructorBoards: ", this.filteredInstructorBoards);
+      // console.log("initialized with this.filteredStudentBoards: ", this.filteredStudentBoards);
+      // console.log("initialized with this.filteredInstructorBoards: ", this.filteredInstructorBoards);
       let formattedBoards = this.formatData(this.filteredStudentBoards, this.filteredInstructorBoards);
-      console.log("calling notification source with formattedBoards: ", formattedBoards);
+      // console.log("calling notification source with formattedBoards: ", formattedBoards);
       this.notificationSource.next(formattedBoards);
-      callback(formattedBoards);
+      this.boardSource.next('dashboard');
     });
+  }
+
+  public setCurrentPage(page){
+    this.boardSource.next(page);
   }
 }
