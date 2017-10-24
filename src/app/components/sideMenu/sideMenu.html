@@ -1,7 +1,7 @@
 <ion-menu [content]="content">
   <ion-content>
     <ion-title padding>
-      Hello{{user.name? ", " + user.name: ""}}
+      Hello{{user.displayName? ", " + user.displayName: ""}}
     </ion-title>
     <button ion-item (click)="toDashboard()" [ngClass]="{'selected-menu-item': selectedBoard == 'dashboard'}">Dashboard</button>
     <ion-list>
@@ -12,4 +12,4 @@
     <button ion-button full (click)="logout()">Sign out</button>
   </ion-content>
 </ion-menu>
-<ion-nav [root]="mainRootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav #content swipeBackEnabled="false"></ion-nav>

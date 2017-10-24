@@ -16,9 +16,11 @@ export class P2iNewQuestionPage {
   questionDescription: string = "";
   isAnonymous: boolean = false;
   boardId: string;
+  displayName: string;
 
   constructor(public navParams: NavParams, private view: ViewController, private db:AngularFireDatabase) {
     this.boardId = navParams.get("boardId");
+    this.displayName = navParams.get("displayName");
   }
 
   closeModal() {
@@ -29,7 +31,7 @@ export class P2iNewQuestionPage {
     const questions = this.db.list('/Questions');
     questions.push(
       {
-        "Poster": "Jianyou Fang",
+        "Poster": this.displayName,
         "BID": this.boardId,
         "Description": this.questionDescription,
         "Timestamp": Date.now(),

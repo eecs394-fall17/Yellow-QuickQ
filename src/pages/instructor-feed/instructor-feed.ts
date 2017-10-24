@@ -17,6 +17,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
 
   title:string;
   boardId:string;
+  user: any;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -32,6 +33,7 @@ export class InstructorFeedPage implements OnInit, OnDestroy {
               private menuCtrl: MenuController) {
                 this.boardId = navParams.get("boardId");
                 this.title = navParams.get("title");
+                this.user = navParams.get("user");
                 this.board = db.object('/Boards/' + this.boardId);
                 this.questions = db.list('/Questions');
                 this.questions.subscribe(questions => {

@@ -43,7 +43,9 @@ export class DashboardPage implements OnInit, OnDestroy  {
 
 	openPage(p){
     this.boardService.setCurrentPage(p);
-	    // navigate to the new page if it is not the current page
-	    this.navCtrl.setRoot(p.component, {boardId: p.params.bid, title:p.title});
+		// navigate to the new page if it is not the current page
+		console.log("DASHBOARD USER");
+		console.log(this.user);
+	    this.navCtrl.setRoot(p.component, {boardId: p.params.bid, title: p.title, user: this.user});
 	}
 }
