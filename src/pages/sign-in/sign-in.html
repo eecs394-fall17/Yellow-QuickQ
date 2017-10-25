@@ -1,13 +1,14 @@
-<ion-content>
+<ion-header>
   <ion-toolbar>
     <ion-buttons left>
       <img width="32px" height="32px" src="assets/icon/app_icon/app_icon_blue_nobk_64_64.png"/>
     </ion-buttons>
-	  <ion-title>QuickQ Sign In</ion-title>
+    <ion-title>QuickQ Sign In</ion-title>
     <ion-buttons right>
     </ion-buttons>
   </ion-toolbar>
-
+</ion-header>
+<ion-content>
   <ion-input type=email placeholder="Email" [(ngModel)]="email"></ion-input>
   <ion-input type=password placeholder="Password" [(ngModel)]="password"></ion-input>
   <button ion-button full large class="full-bottom-btn" (click)="login()">Login</button>
