@@ -16,8 +16,9 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   // question_as_object: FirebaseObjectObservable<any[]>;
   board: FirebaseObjectObservable<any>;
 
-  title:string;
+  title: string;
   boardId: string;
+  user: any;
 
   questions_as_array: any;
   sorted_questions_as_array: any;
@@ -33,6 +34,9 @@ export class StudentFeedPage implements OnInit, OnDestroy {
               private menuCtrl: MenuController) {
         this.boardId = navParams.get("boardId");
         this.title = navParams.get("title");
+        this.user = navParams.get("user");
+        console.log("USER");
+        console.log(this.user);
         this.board = db.object('/Boards/' + this.boardId);
         this.questions = db.list('/Questions');
         this.questions.subscribe(questions => {
@@ -110,7 +114,7 @@ export class StudentFeedPage implements OnInit, OnDestroy {
   }
 
   createNewQuestion(event) {
-    const newQuestionModal:Modal = this.modalCtrl.create(P2iNewQuestionPage, {boardId: this.boardId});
+    const newQuestionModal:Modal = this.modalCtrl.create(P2iNewQuestionPage, {boardId: this.boardId, displayName: this.user.displayName});
     newQuestionModal.present();
   }
 

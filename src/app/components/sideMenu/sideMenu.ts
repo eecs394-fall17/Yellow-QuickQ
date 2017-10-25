@@ -17,7 +17,6 @@ import {Subscription} from "rxjs/Subscription";
 export class SideMenuComponent implements OnInit, OnDestroy {
   @ViewChild(Nav) navi: Nav;
 
-  mainRootPage = DashboardPage;
   boards: Array<{title: string, bid:string, component: any, params: {}}>;
   selectedBoard: any;
   user: any;
@@ -40,6 +39,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       (board) => {
         self.selectedBoard = board;
       });
+      this.navi.setRoot(DashboardPage, {user: this.user});
   }
 
   ngOnDestroy():void{
@@ -49,7 +49,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   toDashboard(){
     this.menuCtrl.close();
     this.boardService.setCurrentPage('dashboard');
-    this.navi.setRoot(DashboardPage, {"user":this.user});
+    this.navi.setRoot(DashboardPage, {user: this.user});
   }
 
   openPage(page) {
@@ -57,7 +57,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.menuCtrl.close();
     this.boardService.setCurrentPage(page);
     // navigate to the new page if it is not the current page
-    this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.title});
+    this.navi.setRoot(page.component, {boardId: page.params.bid, title:page.title, user: this.user});
   }
 
   logout() {
