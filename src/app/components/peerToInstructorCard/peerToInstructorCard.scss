@@ -47,6 +47,9 @@ ion-card {
 		.poster-time{
 			p{
 				color:white;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 			}
 		}
 		.collapse-icon{
